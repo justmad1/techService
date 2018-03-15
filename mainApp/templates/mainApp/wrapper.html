@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+<link rel='stylesheet' href="{% static 'bootstrap/css/bootstrap.min.css' %}" type='text/css'>    <!-- <link rel='stylesheet' href="/static/css/bootstrap.min.css" type='text/css'> -->
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>{% include "mainApp/includes/some_html.html" %}</h1>
+            {% block content %}
+            {% endblock %}
+            <p>
+                <a href="/" class="btn btn-success btn-lg">Главная страница</a>
+                <a href="/news" class="btn btn-primary btn-lg">Узнать больше &raquo;</a>
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <img src="{% static 'mainApp/sun.jpg' %}" class="img-thumbnail">
+        <hr>
+        &copy; Все права защищены 2018
+    </div>
 </body>
 </html>
