@@ -11,12 +11,13 @@
     <div class="jumbotron">
         <div class="container">
             <h1>{% include "mainApp/includes/some_html.html" %}</h1>
-            {% block content %}
-            {% endblock %}
             <p>
                 <a href="/" class="btn btn-success btn-lg">Главная страница</a>
-                <a href="/news" class="btn btn-primary btn-lg">Узнать больше &raquo;</a>
+                <a href="/news" class="btn btn-primary btn-lg">Новости</a>
+                <a href="/contact" class="btn btn-info btn-lg">Контакты</a>
             </p>
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
     <div class="container">
