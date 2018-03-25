@@ -1,0 +1,7 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+    {% for category in object_list %}
+        <a href="/categories/{{category.id}}"><h3>{{category.name}}</h3></a>
+    {% endfor %}
+{% endblock %}

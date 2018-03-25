@@ -1,0 +1,6 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+    <h2 class="text-primary">{{categories.name}} </h2>
+    <h6 class="text-primary">{{categories.description|safe|linebreaks}} </h6>
+{% endblock %}
