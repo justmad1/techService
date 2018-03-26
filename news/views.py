@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts imp
+from django.views.generic import ListView
+from news.models import Articles
 
-# Create your views here.
+class ArticlesList(ListView):
+    model = Articles

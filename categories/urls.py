@@ -2,10 +2,15 @@ from django.conf.urls import include, url
 from django.views.generic import ListView, DetailView
 from categories.models import Categories
 
+
+from categories.views import CategoriesList
+from categories.views import CategoriesDetailView
+
 urlpatterns = [
-    url(r'^$',
-        ListView.as_view(queryset=Categories.objects.all()[:20],template_name='categories/categories.html')),
-    url(r'^(?P<pk>\d+)$', 'categories.views.basic_one'),
+    url(r'^$', CategoriesList.as_view()),
+    #url(r'^$',
+     #   ListView.as_view(queryset=Categories.objects.all()[:20],template_name='categories/categories.html')),
+    url(r'^(?P<pk>\d+)$', CategoriesDetailView.as_view()),
     # url(r'^(?P<pk>\d+)$',
         # DetailView.as_view(model=Categories, template_name='categories/category.html'))
 ]
