@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^areas/$', AreaList.as_view(), name="areas"),
     url(r'^areas/(?P<pk>\d+)$', AreaDetailView.as_view(), name="areas-detail"),
     url(r'^areas/service/(?P<pk>\d+)/$', ServiceDetailView.as_view(), name="service-detail"),
-    url(r'^order/', views.make_order, name="order")
+    url(r'^order/', views.make_order, name="order"),
+
 ]

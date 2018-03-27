@@ -62,3 +62,22 @@ def book_detail_view(request,pk):
 
 def  make_order():
     pass
+
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Area
+
+class AreaCreate(CreateView):
+    model = Area
+    fields = '__all__'
+    # initial={'date_of_death':'12/10/2016',}
+
+class AreaUpdate(UpdateView):
+    model = Area
+    fields = '__all__'
+    # ['first_name','last_name','date_of_birth','date_of_death']
+
+class AreaDelete(DeleteView):
+    model = Area
+    success_url = reverse_lazy('areas')
