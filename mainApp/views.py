@@ -65,7 +65,7 @@ def  make_order():
 
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.core.urlresolvers import reverse_lazy
 from .models import Area
 
 class AreaCreate(CreateView):

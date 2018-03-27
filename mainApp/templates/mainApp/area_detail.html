@@ -8,5 +8,9 @@
         <hr>
         <p><a href="{% url 'service-detail' service.pk %}">{{ service.name }}</a></p>
     {% endfor %}
+    <p><a href="{% url 'area-create' %}">Добавить категорию</a></p>
+    <p><a href="{% url 'area-update' area.pk %}">Редактировать категорию</a></p>
+    <p><a href="{% url 'area-delete' area.pk %}">Удалить категорию</a></p>
+
 
 {% endblock %}

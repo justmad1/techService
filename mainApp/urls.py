@@ -16,4 +16,7 @@ urlpatterns = [
     url(r'^areas/service/(?P<pk>\d+)/$', ServiceDetailView.as_view(), name="service-detail"),
     url(r'^order/', views.make_order, name="order"),
 
+    url(r'^area/create/$', views.AreaCreate.as_view(), name='area-create'),
+    url(r'^area/(?P<pk>\d+)/update/$', views.AreaUpdate.as_view(), name='area-update'),
+    url(r'^area/(?P<pk>\d+)/delete/$', views.AreaDelete.as_view(), name='area-delete'),
 ]
