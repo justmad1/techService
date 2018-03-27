@@ -1,0 +1,12 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+    <h2 class="text-primary">{{area.name}} </h2>
+    <h4 class="text">{{area.description|safe|linebreaks}} </h6>
+
+    {% for service in area.service_set.all %}
+        <hr>
+        <p><a href="{% url 'service-detail' service.pk %}">{{ service.name }}</a></p>
+    {% endfor %}
+
+{% endblock %}
