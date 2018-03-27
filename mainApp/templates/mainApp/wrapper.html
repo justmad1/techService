@@ -12,16 +12,18 @@
         <div class="container">
             <h1>{% include "mainApp/includes/some_html.html" %}</h1>
             <p>
-                <a href="{% url 'index' %}" class="btn btn-success btn-lg">Главная страница</a>
-                <a href="/news" class="btn btn-primary btn-lg">Новости</a>
-                <a href="/contact" class="btn btn-info btn-lg">Контакты</a>
-                <a href="/categories" class="btn btn-info btn-lg">Категории</a>
-                <a href="/admin" class="btn btn-info btn-lg">Админ</a>
+                <a href="{% url 'index' %}" class="btn btn-success">Главная страница</a>
+                <a href="/news" class="btn btn-primary">Новости</a>
+                <a href="/contact" class="btn btn-info">Контакты</a>
+                <a href="/categories" class="btn btn-info">Категории</a>
+                <a href="/admin" class="btn btn-info">Админ</a>
                 {% if user.is_authenticated %}
                     <li>User: {{ user.get_username }}</li>
-                    <li><a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-info btn-lg">Logout</a></li>
+                    <li><a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-info">Выйти</a></li>
                 {% else %}
-                    <li><a href="{% url 'login'%}?next={{request.path}}" class="btn btn-info btn-lg">Login</a></li>
+                    <li><a href="{% url 'login'%}?next={{request.path}}" class="btn btn-info">
+                    Войти</a></li>
+                    <li><a href="/register" class="btn btn-info">Зарегистрироваться</a></li>
                 {% endif %}
             </p>
             {% block content %}

@@ -1,0 +1,10 @@
+{% extends "mainApp/wrapper.html" %}
+{% block content %}
+
+    <form action = "/register/" method = "POST">{% csrf_token %}
+    {{ form.as_p }}
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+
+{% endblock %}
+
