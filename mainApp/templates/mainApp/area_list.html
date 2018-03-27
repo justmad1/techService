@@ -1,0 +1,7 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+    {% for area in object_list %}
+        <a href="{% url 'areas-detail' area.pk %}"><h3>{{ area.name }}</h3></a>
+    {% endfor %}
+{% endblock %}
