@@ -1,0 +1,16 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+    <h2 class="text-primary">{{area.name}} </h2>
+    <h4 class="text">{{area.description|safe|linebreaks}} </h6>
+
+    {% for service in area.service_set.all %}
+        <hr>
+        <p><a href="{% url 'service-detail' service.pk %}">{{ service.name }}</a></p>
+    {% endfor %}
+    <p><a href="{% url 'area-create' %}">Добавить категорию</a></p>
+    <p><a href="{% url 'area-update' area.pk %}">Редактировать категорию</a></p>
+    <p><a href="{% url 'area-delete' area.pk %}">Удалить категорию</a></p>
+
+
+{% endblock %}

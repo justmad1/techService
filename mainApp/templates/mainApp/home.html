@@ -4,4 +4,9 @@
 <p> А этот текст находится в home
 После него снова будет веселое солнышко </p>
 {% include 'mainApp/includes/some_html.html' %}
+<h2> Информация, взятая из БД </h2>
+
+<li><strong>Categories:</strong> {{ num_categories }}</li>
+<li><strong>Artices:</strong> {{ num_articles }}</li>
+<li><strong>Articles with a:</strong> {{ num_instances_available }}</li>
 {% endblock %}
