@@ -11,6 +11,7 @@ class Area(models.Model):
     def get_absolute_url(self):
         return reverse('areas-detail', args=[str(self.id)])
 
+
 class Service(models.Model):
     name = models.CharField(max_length = 20)
     description = models.TextField()
@@ -23,4 +24,3 @@ class Service(models.Model):
 
     def get_absolute_url(self):
         return reverse('service-detail', args=[str(self.id)])
-
