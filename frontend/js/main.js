@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 /*TRANSITION PAGE*/
 
-var speed = 'slow';
+var speed = 'fast';
 
 $('html, body').hide();
 
