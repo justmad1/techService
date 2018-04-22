@@ -1,4 +1,4 @@
-{% extends "mainApp/wrapper.html" %} {% load static %} {% block content %} {% for area in object_list %}
+ {% extends "mainApp/wrapper.html" %} {% load static %} {% block content %} {% for area in object_list %}
 <div class="area-item">
     <a href="{% url 'areas-detail' area.pk %}">
         <div class="portfolio web" data-cat="web">
