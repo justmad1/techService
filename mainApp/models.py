@@ -13,7 +13,7 @@ class Area(models.Model):
 
 
 class Service(models.Model):
-    name = models.CharField(max_length = 20)
+    name = models.CharField(max_length = 120)
     description = models.TextField()
     time = models.CharField(max_length = 20, help_text="How much time service will take")
     price = models.IntegerField()
