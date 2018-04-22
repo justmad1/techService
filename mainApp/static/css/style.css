@@ -37,12 +37,31 @@ body {
 	margin:0 auto;
 	width:80%;
 }
+.link {
+    color: #778899; 
+}
 /* start header */
-.header_bg{
+.describe{
 	background: #ffffff;
+    padding: 2% 10%;
+    padding-left: 10%;
 }
 .header{
-	padding: 2% 4%;
+	padding: 2% 2%;
+}
+.headhesive {
+    z-index: 999;
+    background: #FFF;
+    position: fixed;
+    width: 100%;
+    margin: auto;
+    transform: translateY(-100%);
+}
+.headhesive--stick{
+    width: 90%;
+    padding-left: 10%;
+    padding-right: 20%;
+    transform: translateY(0);
 }
 .logo{
 	float: left;
@@ -57,13 +76,14 @@ body {
 .menu{
 	float: left;
 	margin-right: 40px;
+    margin-top: 15px;
 }
 .menu li{
 	float: left;
 	margin-right: 10px;
 }
 .menu li.active a,.menu li a:hover{
-	background: #19BD9B;
+	background: #19BD9d;
 	color: #ffffff;
 	text-shadow: 0 1px 0 #10816A;
 }
@@ -239,6 +259,7 @@ body {
 	font-size: 1.5em;
 	color: #c0c0c0;
 	font-weight: 400;
+    margin-bottom: 50px;
 }
 .h_left h3{
 	margin-top: 10px;
@@ -395,8 +416,20 @@ body {
 }
 .portfolio-wrapper {
 	overflow:hidden;
-	position: relative !important;
+	position: relative;
 	cursor:pointer;
+}
+.portfolio-img {
+    width: 300px;
+    margin: auto;
+    padding-top: 30px;
+}
+.area-item {
+    float: left;
+    width: 44%;
+    padding-top: 30px;
+    margin: 3%;
+    height: 250px;
 }
 #portfoliolist a img{
 	display: block;
@@ -469,6 +502,7 @@ body {
 	background: #ffffff;
 }
 .footer{
+    float: left;
 	padding:4%;
 }
 .span_of_4{
@@ -1730,6 +1764,7 @@ span.tab-img{
 	}
 	.b_left {
 		width: 16.333333%;
+        
 	}
 	.b_right {
 		width: 80.333333%;
@@ -1802,4 +1837,21 @@ span.tab-img{
 	.contact-form input[type="text"], .contact-form textarea {
 		width: 90.3333%;
 	}
+}
+
+#logo {
+    cursor:pointer;
+    font-size: 2em; 
+    color: #778899;
+    font-family: 'Gaegu', cursive;
+}
+
+#main {
+    
+}
+
+.devices {
+    opacity: 90%;
+    width: 700px;
+    margin: auto;
 }
