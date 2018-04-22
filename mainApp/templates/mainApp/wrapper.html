@@ -1,23 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Tech Service</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="icon" type="image/png" href="img/small-logo-01.png">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% load static %}
-    <!-- <link rel='stylesheet' href="{% static 'bootstrap/css/bootstrap.min.css' %}" type='text/css'> -->
-    <link rel='stylesheet' href="{% static 'bootstrap/css/style.css' %}" type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Gaegu" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'css/style.css' %}" type='text/css'>
+    <!--  jquery plguin -->
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- start gallery -->
+    <script type="text/javascript" src="{% static 'js/jquery.easing.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/headhesive.min.js' %}"></script>
+    <script type="text/javascript">
+    $(function() {
+        var header = new Headhesive('.header');
+        var filterList = {
+
+            init: function() {
+
+                // MixItUp plugin
+                // http://mixitup.io
+                $('#portfoliolist').mixitup({
+                    targetSelector: '.portfolio',
+                    filterSelector: '.filter',
+                    effects: ['fade'],
+                    easing: 'snap',
+                    // call the hover effect
+                    onMixEnd: filterList.hoverEffect()
+                });
+
+            },
+
+            hoverEffect: function() {
+                // Simple parallax effect
+                $('#portfoliolist .portfolio').hover(
+                    function() {
+                        $(this).find('.label').stop().animate({ bottom: 0 }, 200, 'easeOutQuad');
+                        $(this).find('img').stop().animate({ top: -30 }, 500, 'easeOutQuad');
+                    },
+                    function() {
+                        $(this).find('.label').stop().animate({ bottom: -40 }, 200, 'easeInQuad');
+                        $(this).find('img').stop().animate({ top: 0 }, 300, 'easeOutQuad');
+                    }
+                );
+            }
+        };
+
+        // Run the show!
+        filterList.init();
+
+    });
+    </script>
+    <!-- Add fancyBox main JS and CSS files -->
+    <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+    });
+    </script>
 </head>
 
 <body>
+<<<<<<< HEAD
+    <!-- start header -->
+    <div class="header_bg">
+        <div class="wrap">
+            <div class="header">
+                <div class="logo">
+                    <h1 id="logo"><a class="link" href="{% url 'index' %}">Tech Service</a></h1>
+                </div>
+                <div class="h_right">
+                    <ul class="menu">
+                        <li class="menu-item"><a href="{% url 'index' %}">главная</a></li>
+                        <li class="menu-item"><a href="#">о нас</a></li>
+                        <li class="menu-item"><a href="{% url 'areas' %}">Услуги</a></li>
+                        <li class="menu-item"><a href="#">блог</a></li>
+                        <li class="menu-item"><a href="{% url 'login' %}">кабинет пользователя</a></li>
+                    </ul>
+                    <script type="text/javascript" src="{% static 'js/responsive.menu.js' %}"></script>
+                    <!-- end smart_nav * -->
+                </div>
+                <div class="clear"></div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <!-- start main -->
+    <div id="main">
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- footer -->
+    <div class="footer_bg">
+        <div class="wrap">
+            <div class="footer">
+                <div class="span_of_4">
+                    <div class="span1_of_4">
+                        <h4>about us</h4>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry .....</p>
+                        <span>Address</span>
+                        <p class="top">500 Lorem Ipsum Dolor Sit,</p>
+                        <p>22-56-2-9 Sit Amet,</p>
+                        <p>USA</p>
+                        <p>Phone:(00) 222 666 444</p>
+                        <p>Fax: (000) 000 00 00 0</p>
+                        <div class="f_icons">
+                            <ul>
+                                <li><a class="icon2" href="#"></a></li>
+                                <li><a class="icon1" href="#"></a></li>
+                                <li><a class="icon3" href="#"></a></li>
+                                <li><a class="icon4" href="#"></a></li>
+                                <li><a class="icon5" href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="span1_of_4">
+                        <h4>latest posts</h4>
+                        <span>Fusce scelerisque massa vitae</span>
+                        <p>25 april 2013</p>
+                        <span>Pellentesque bibendum ante</span>
+                        <p>15 march 2013</p>
+                        <span>Maecenas quis ipsum sed magna </span>
+                        <p>25 april 2013</p>
+                    </div>
+                    <div class="span1_of_4">
+                        <h4>latest comments</h4>
+                        <span class="bg">It is a long established fact that a reader will looking layout.</span>
+                        <span class="bg top">There are many variations of passages of Lorem Ipsum available words.</span>
+                        <span class="bg">It is a long established fact that a reader will looking layout.</span>
+                    </div>
+                    <div class="span1_of_4">
+                        <h4>flicker photostream</h4>
+                        <ul class="f_nav">
+                            <li><a href="#"><img src="{% static 'images/f_pic1.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic2.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic3.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic4.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic5.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic6.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic7.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic8.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic9.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic10.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic11.jpg'%}" alt=""> </a></li>
+                            <li><a href="#"><img src="{% static 'images/f_pic12.jpg'%}" alt=""> </a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="footer_top">
+                    <div class="f_nav1">
+                        <ul>
+                            <li><a href="index.html">home</a></li>
+                            <li><a href="about.html">about</a></li>
+                            <li><a href="portfolio.html">portfolio</a></li>
+                            <li><a href="blog.html">blog</a></li>
+                            <li><a href="index.html">features</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="copy">
+                        <p class="link"><span>© All rights reserved</span></p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+=======
     <div class="jumbotron">
         <div class="container">
 -            <h1>{% include "mainApp/includes/some_html.html" %}</h1>
@@ -39,79 +202,7 @@
 -            </p>
 -            {% block content %}
 -            {% endblock %}
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.localScroll.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-animate-css-rotate-scale.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/fastclick.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.animate-colors-min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.animate-shadow-min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-    <script>
-    /* PRELOADER */
-
-    function preloader() {
-        if (document.images) {
-            var img1 = new Image();
-            var img2 = new Image();
-            var img3 = new Image();
-            var img4 = new Image();
-            var img5 = new Image();
-            var img6 = new Image();
-            var img7 = new Image();
-            var img8 = new Image();
-            var img9 = new Image();
-            var img10 = new Image();
-            var img11 = new Image();
-            var img12 = new Image();
-            var img13 = new Image();
-            var img14 = new Image();
-            var img15 = new Image();
-            var img16 = new Image();
-            var img17 = new Image();
-            var img18 = new Image();
-            var img19 = new Image();
-            var img20 = new Image();
-
-            img1.src = "{% static 'img/psd-4.jpg' %}";
-            img2.src = "{% static 'img/font-1.jpg' %}";
-            img3.src = "{% static 'img/psd-1.jpg' %}";
-            img4.src = "{% static 'img/psd-2.jpg' %}";
-            img5.src = "{% static 'img/ai-1.jpg' %}";
-            img6.src = "{% static 'img/theme-2.jpg' %}";
-            img7.src = "{% static 'img/psd-3.jpg' %}";
-            img8.src = "{% static 'img/font-2.jpg' %}";
-            img9.src = "{% static 'img/font-3.jpg' %}";
-            img10.src = "{% static 'img/ai-2.jpg' %}";
-            img11.src = "{% static 'img/icons-1.jpg' %}";
-            img12.src = "{% static 'img/ui-1.jpg' %}";
-            img13.src = "{% static 'img/font-5.jpg' %}";
-            img14.src = "{% static 'img/theme-2.jpg' %}";
-            img15.src = "{% static 'img/psd-5.jpg' %}";
-            img16.src = "{% static 'img/icons-3.jpg' %}";
-            img17.src = "{% static 'img/font-4.jpg' %}";
-            img18.src = "{% static 'img/theme-3.jpg' %}";
-            img19.src = "{% static 'img/font-6.jpg' %}";
-            img20.src = "{% static 'img/theme-4.jpg' %}";
-        }
-    }
-
-    function addLoadEvent(func) {
-        var oldonload = window.onload;
-        if (typeof window.onload != 'function') {
-            window.onload = func;
-        } else {
-            window.onload = function() {
-                if (oldonload) {
-                    oldonload();
-                }
-                func();
-            }
-        }
-    }
-    addLoadEvent(preloader);
-    </script>
+>>>>>>> master
     </div>
 </body>
 
