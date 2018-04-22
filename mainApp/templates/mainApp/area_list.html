@@ -2,6 +2,8 @@
 
 {% block content %}
     {% for area in object_list %}
-        <a href="{% url 'areas-detail' area.pk %}"><h3>{{ area.name }}</h3></a>
+        <a href="{% url 'areas-detail' area.pk %}"><h3>{{ area.description }}</h3></a>
+        {{area.name}}
+        <hr>
     {% endfor %}
 {% endblock %}

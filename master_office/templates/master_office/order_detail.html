@@ -1,0 +1,11 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+status: {{order.status}}
+    {% for line in order.orderline_set.all %}
+        <p>
+            new line in order!
+            brand: {{line.brand_name}}
+        </p>
+    {% endfor %}
+{% endblock %}
