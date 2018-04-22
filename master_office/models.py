@@ -11,6 +11,7 @@ class Master(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
+    photo = models.ImageField(default = "")
     phone = models.CharField(max_length = 20, default = "")
     rating = models.IntegerField(default = 0)
 
@@ -26,22 +27,30 @@ class OrderList(models.Model):
     end_date = models.DateTimeField()
     expected_date = models.DateTimeField()
     rating = models.IntegerField(default = 0)
-    comment = models.TextField()
+    feedback = models.TextField()
 
     def __str__(self):
-        return self.comment
+        return self.feedback
+
+    def get_absolute_url(self):
+        return reverse('master_orders-detail', args=[str(self.id)])
 
 
 class OrderLine(models.Model):
-    orderList = models.ForeignKey(OrderList, on_delete=models.CASCADE)
+    orderList = models.ForeignKey('OrderList', on_delete=models.CASCADE)
     service = models.OneToOneField(Service, on_delete=models.CASCADE)
     master = models.OneToOneField(Master, on_delete=models.CASCADE)
     brand_name = models.CharField(max_length = 20)
     device_name = models.CharField(max_length = 20)
     serial_id = models.CharField(max_length = 20)
-    comment = models.TextField()
+    feedback = models.TextField()
     trouble_description = models.TextField()
     status = models.IntegerField(default = 0)
 
     def __str__(self):
-        return self.service.name
+        return self.feedback
+
+
+class Comment(models.Model):
+    text = models.TextField(verbose_name="Текст комментария")
+    order = models.ForeignKey("OrderList")
