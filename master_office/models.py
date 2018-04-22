@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 from mainApp.models import Area, Service
 
-
 class Master(models.Model):
     user = models.OneToOneField(
         User,
@@ -19,7 +18,7 @@ class Master(models.Model):
         return self.user.username
 
 
-class OrderList(models.Model):
+class Order(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.IntegerField(default = 0)
     price = models.FloatField()
@@ -37,9 +36,9 @@ class OrderList(models.Model):
 
 
 class OrderLine(models.Model):
-    orderList = models.ForeignKey('OrderList', on_delete=models.CASCADE)
-    service = models.OneToOneField(Service, on_delete=models.CASCADE)
-    master = models.OneToOneField(Master, on_delete=models.CASCADE)
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    master = models.ForeignKey('Master', on_delete=models.CASCADE)
     brand_name = models.CharField(max_length = 20)
     device_name = models.CharField(max_length = 20)
     serial_id = models.CharField(max_length = 20)
@@ -53,4 +52,4 @@ class OrderLine(models.Model):
 
 class Comment(models.Model):
     text = models.TextField(verbose_name="Текст комментария")
-    order = models.ForeignKey("OrderList")
+    order = models.ForeignKey("Order")

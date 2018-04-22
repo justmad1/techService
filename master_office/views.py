@@ -25,13 +25,13 @@ def orders(request):
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from master_office.models import OrderList
+from master_office.models import Order
 
 class OrderList(ListView):
-    model = OrderList
+    model = Order
 
 class OrderDetailView(DetailView):
-    model = OrderList
+    model = Order
 
 
 # class ServiceDetailView(DetailView):
