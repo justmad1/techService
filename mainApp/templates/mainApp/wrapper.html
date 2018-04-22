@@ -75,6 +75,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <!-- start header -->
     <div class="header_bg">
         <div class="wrap">
@@ -179,6 +180,29 @@
                 </div>
             </div>
         </div>
+=======
+    <div class="jumbotron">
+        <div class="container">
+-            <h1>{% include "mainApp/includes/some_html.html" %}</h1>
+-            <p>
+-                <a href="{% url 'index' %}" class="btn btn-success">Главная страница</a>
+-                <a href="/news" class="btn btn-primary">Новости</a>
+-                <a href="/contact" class="btn btn-info">Контакты</a>
+-                <a href="{% url 'areas' %}" class="btn btn-info">Категории</a>
+-                <a href="{% url 'master_orders' %}" class="btn btn-info">Заказы</a>
+-                <a href="/admin" class="btn btn-info">Админ</a>
+-                {% if user.is_authenticated %}
+-                    <li>User: {{ user.get_username }}</li>
+-                    <li><a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-info">Выйти</a></li>
+-                {% else %}
+-                    <li><a href="{% url 'login'%}?next={{request.path}}" class="btn btn-info">
+-                    Войти</a></li>
+-                    <li><a href="{% url 'register'%}?next={{request.path}}" class="btn btn-info">Зарегистрироваться</a></li>
+-                {% endif %}
+-            </p>
+-            {% block content %}
+-            {% endblock %}
+>>>>>>> master
     </div>
 </body>
 

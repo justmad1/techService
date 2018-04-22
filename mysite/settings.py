@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'cart',
     'news',
+    'master_office',
     'mainApp',
     'webexample',
     'django.contrib.admin',
