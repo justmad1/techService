@@ -75,7 +75,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
     <!-- start header -->
     <div class="header_bg">
         <div class="wrap">
@@ -85,11 +84,20 @@
                 </div>
                 <div class="h_right">
                     <ul class="menu">
-                        <li class="menu-item"><a href="{% url 'index' %}">главная</a></li>
-                        <li class="menu-item"><a href="#">о нас</a></li>
-                        <li class="menu-item"><a href="{% url 'areas' %}">Услуги</a></li>
-                        <li class="menu-item"><a href="#">блог</a></li>
-                        <li class="menu-item"><a href="{% url 'login' %}">кабинет пользователя</a></li>
+                        <li class="menu-item"><a href="{% url 'index' %}">Главная</a></li>
+                        <li class="menu-item"><a href="/news">Новости</a></li>
+                        <li class="menu-item"><a href="/contact">Контакты</a></li>
+                        <li class="menu-item"><a href="{% url 'areas' %}">Категории</a></li>
+                        <li class="menu-item"><a href="{% url 'master_orders' %}">Заказы</a></li>
+                        <li class="menu-item"><a href="/admin">Админ</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="non-clickable">Вы вошли как: {{ user.get_username }}</li>
+                        <li class="menu-item logout"><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
+                        {% else %}
+                        <li class="menu-item"><a href="{% url 'login'%}?next={{request.path}}">
+                        Войти</a></li>
+                        <li class="menu-item"><a href="{% url 'register'%}?next={{request.path}}">Зарегистрироваться</a></li>
+                        {% endif %}
                     </ul>
                     <script type="text/javascript" src="{% static 'js/responsive.menu.js' %}"></script>
                     <!-- end smart_nav * -->
@@ -103,7 +111,6 @@
     <div id="main">
         {% block content %} {% endblock %}
     </div>
-
     <!-- footer -->
     <div class="footer_bg">
         <div class="wrap">
@@ -180,29 +187,6 @@
                 </div>
             </div>
         </div>
-=======
-    <div class="jumbotron">
-        <div class="container">
--            <h1>{% include "mainApp/includes/some_html.html" %}</h1>
--            <p>
--                <a href="{% url 'index' %}" class="btn btn-success">Главная страница</a>
--                <a href="/news" class="btn btn-primary">Новости</a>
--                <a href="/contact" class="btn btn-info">Контакты</a>
--                <a href="{% url 'areas' %}" class="btn btn-info">Категории</a>
--                <a href="{% url 'master_orders' %}" class="btn btn-info">Заказы</a>
--                <a href="/admin" class="btn btn-info">Админ</a>
--                {% if user.is_authenticated %}
--                    <li>User: {{ user.get_username }}</li>
--                    <li><a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-info">Выйти</a></li>
--                {% else %}
--                    <li><a href="{% url 'login'%}?next={{request.path}}" class="btn btn-info">
--                    Войти</a></li>
--                    <li><a href="{% url 'register'%}?next={{request.path}}" class="btn btn-info">Зарегистрироваться</a></li>
--                {% endif %}
--            </p>
--            {% block content %}
--            {% endblock %}
->>>>>>> master
     </div>
 </body>
 

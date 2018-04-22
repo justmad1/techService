@@ -103,6 +103,14 @@ body {
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
+.non-clickable{
+    color: #696969;
+    font-size: 1em;
+    margin-left: 20px;
+}
+.menu li.logout a:hover{
+    background-color: red;
+}
 /*start search*/
 .sb-search {
 	position: absolute;
@@ -118,6 +126,7 @@ body {
 	transition: width 0.3s;
 	-webkit-backface-visibility: hidden;
 }
+
 .sb-search-input {
 	position: absolute;
 	top: 0;
