@@ -14,6 +14,8 @@
     <script type="text/javascript" src="{% static 'js/jquery.easing.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.mixitup.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/headhesive.min.js' %}"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
+    </script>
     <script type="text/javascript">
     $(function() {
         var header = new Headhesive('.header');
@@ -84,7 +86,6 @@
                 </div>
                 <div class="h_right">
                     <ul class="menu">
-                        <li class="menu-item"><a href="{% url 'index' %}">Главная</a></li>
                         <li class="menu-item"><a href="/news">Новости</a></li>
                         <li class="menu-item"><a href="/contact">Контакты</a></li>
                         <li class="menu-item"><a href="{% url 'areas' %}">Категории</a></li>
@@ -114,7 +115,9 @@
     <!-- footer -->
     <div class="footer_bg">
         <div class="wrap">
+            <hr>
             <div class="footer">
+
                 <div class="span_of_4">
                     <div class="span1_of_4">
                         <h4>about us</h4>

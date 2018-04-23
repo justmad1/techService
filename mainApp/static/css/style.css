@@ -1856,12 +1856,39 @@ span.tab-img{
     font-family: 'Gaegu', cursive;
 }
 
-#main {
-    
+#map {
+    float: left;
+    width: 60%;
+    height: 500px;
+    margin: 20px;
+    margin-right: 40px;
+    border: 1px solid #808080;
+    border-radius: 3px;
 }
 
 .devices {
     opacity: 90%;
     width: 700px;
     margin: auto;
+}
+.text-container-center {
+    background-color: #eee;
+    width: 75%;
+    height: 550px;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border: 2px solid #808080;
+    border-radius: 5px;
+}
+.way {
+    float: left;
+    margin-top: 15px;
+    width: 20%;
+    height: 83%;
+    padding-bottom: 50px;
+    padding-left: 35px;
+    border-left: 2px dashed #808080;
 }

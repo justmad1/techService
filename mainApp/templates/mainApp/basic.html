@@ -1,7 +1,23 @@
-{% extends "mainApp/wrapper.html" %}
+{% extends "mainApp/wrapper.html" %} {% load static %} {% block content %}
+<script type="text/javascript">
+ymaps.ready(init);
+        var myMap, 
+            myPlacemark;
 
-{% block content %}
-    {% for val in values %}
-        <p>{{val}}</p>
-    {% endfor %}
+        function init(){ 
+            myMap = new ymaps.Map("map", {
+                center: [53.91793482, 27.59475116],
+                zoom: 14
+            }); 
+            
+            myPlacemark = new ymaps.Placemark([53.91793482, 27.59475116], {
+                hintContent: 'Tech Service',
+                balloonContent: 'Лучший сервис в мире'
+            });
+            
+            myMap.geoObjects.add(myPlacemark);
+        }
+</script>
+<div class="text-container-center"><div id="map"></div><div class="way">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+</div>
 {% endblock %}
