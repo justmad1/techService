@@ -18,7 +18,7 @@ def index(request):
 
 @login_required
 def contact(request):
-    return render(request, 'mainApp/basic.html', {'values': ['blablabla', '3578548']})
+    return render(request, 'mainApp/basic.html')
 
 
 def register_user(request):

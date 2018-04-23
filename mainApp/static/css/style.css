@@ -12,7 +12,9 @@ blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
 table{border-collapse:collapse;border-spacing:0;}
 /* start editing from here */
-a{text-decoration:none;}
+a{
+    text-decoration:none;
+}
 .txt-rt{text-align:right;}/* text align right */
 .txt-lt{text-align:left;}/* text align left */
 .txt-center{text-align:center;}/* text align center */
@@ -47,21 +49,28 @@ body {
     padding-left: 10%;
 }
 .header{
-	padding: 2% 2%;
+	padding: 1% 0%;
+    /*padding-left: 4%;*/
+}
+.header_bg {
+    background-color: #eee;
+    border-bottom: 2px solid #19BD9d;
 }
 .headhesive {
-    z-index: 999;
-    background: #FFF;
-    position: fixed;
     width: 100%;
-    margin: auto;
-    transform: translateY(-100%);
+    z-index: 999;
+    background: #eee;
+    position: fixed;
+    /*width: 100%;
+    margin: auto;*/
+    transform: translateY(-200%);
+    border-bottom: 2px solid #19BD9d; 
 }
 .headhesive--stick{
-    width: 90%;
-    padding-left: 10%;
-    padding-right: 20%;
     transform: translateY(0);
+  -webkit-transition: all 300ms ease-in-out;
+     -moz-transition: all 300ms ease-in-out;
+          transition: all 300ms ease-in-out;
 }
 .logo{
 	float: left;
@@ -417,8 +426,6 @@ body {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-o-box-sizing: border-box;
-	width:23%;
-	margin:1%;
 	display:none;
 	float:left;
 	overflow:hidden;
@@ -427,18 +434,19 @@ body {
 	overflow:hidden;
 	position: relative;
 	cursor:pointer;
+    height: 330px;
 }
 .portfolio-img {
     width: 300px;
     margin: auto;
-    padding-top: 30px;
+    margin-top: 30px;
 }
 .area-item {
     float: left;
     width: 44%;
-    padding-top: 30px;
+    margin-top: 30px;
     margin: 3%;
-    height: 250px;
+    height: 330px;
 }
 #portfoliolist a img{
 	display: block;
@@ -460,18 +468,21 @@ body {
 	transition: all 0.3s ease-in-out;	
 }
 .portfolio:hover,.label-bg:hover{
-	background: rgba(0, 0, 0, 0.21);
+	background: #DCDCDC;
+    border-bottom: 5px solid #19BD9B;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 .portfolio .label-text {
 	text-align:center;
-	color:#fff;
+	color:#000;
 	position: relative;
 	z-index:500;
 	padding:5px 8px;
 }
 .text-title{
 	font-size: 1.2em;
-	color: #ffffff;
+	color: #000;
 	font-weight: 100;
 	text-transform: capitalize;
 	line-height: 1.8em;
@@ -508,7 +519,7 @@ body {
 }
 /* start footer */
 .footer_bg{
-	background: #ffffff;
+	background-color: #DCDCDC;
 }
 .footer{
     float: left;
@@ -1543,9 +1554,8 @@ span.tab-img{
 		text-align:center;
 	}
 	.h_right {
-		background: #19BD9B;
 		height: 44px;
-		float:none;
+		float: none;
 	}
 	.menu {
 		display: none;
@@ -1849,18 +1859,117 @@ span.tab-img{
 }
 
 #logo {
+    margin-left: 20%;
+    width: 200px;
     cursor:pointer;
     font-size: 2em; 
     color: #778899;
     font-family: 'Gaegu', cursive;
 }
 
-#main {
-    
+#map {
+    float: left;
+    width: 60%;
+    height: 500px;
+    margin: 20px;
+    margin-right: 40px;
+    border: 1px solid #808080;
+    border-radius: 3px;
 }
 
 .devices {
     opacity: 90%;
     width: 700px;
     margin: auto;
+}
+.text-container-center {
+    background-color: ##FFFAFA;
+    width: 75%;
+    height: 550px;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border: 2px solid #808080;
+    border-radius: 5px;
+     overflow: hidden;
+}
+.way {
+    float: left;
+    margin-top: 15px;
+    width: 20%;
+    height: 83%;
+    padding-bottom: 50px;
+    padding-left: 35px;
+    border-left: 2px dashed #808080;
+}
+.area-text-primary {
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+.area-container{
+    margin: 3.5% 0%; 
+}
+.area-text-description {
+    margin: 4% 0%;
+}
+.divide-30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.center {
+    width: 100%;
+    margin: auto;
+}
+.area-link{
+    font-size: 0.9em;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    color: #000;
+}
+.area-link-item {
+    width: 20%;
+    height: 40px;
+    float: left;
+    margin: 1% 2%;
+}
+.area-link-crud {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin: auto;
+    color: #fff;
+}
+.crud-item {
+    background-color: #19BD9B;
+    border-radius: 5px;
+    width: 24%;
+    height: 26px;
+    float: left;
+    margin: 1% 3.5%;
+    padding: 1%;
+}
+.area-link-item:hover {
+    cursor: pointer;
+    background-color: #DCDCDC;
+    border-bottom: 4px solid #19BD9B;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.area-categories {
+    margin-top: 20px;
+    width: 100%;
+    float: left;
+}
+
+/* login */
+#register-button {
+    
 }
