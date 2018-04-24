@@ -1,11 +1,33 @@
+
 {% extends "mainApp/wrapper.html" %}
 
 {% block content %}
-status: {{order.status}}
+Информация о заказе:
+<p>status: {{order.status}}</p>
+<p>клиент: {{order.client.first_name}}</p>
+<p>цена: {{order.price}}</p>
+<p>Обратная связь: {{order.feedback}}</p>
+        <hr>
+        <hr>
     {% for line in order.orderline_set.all %}
         <p>
-            new line in order!
-            brand: {{line.brand_name}}
+
+            <p>Название услуги: {{line.service.name}}</p>
+            <p>Описание проблемы: {{line.touble_description}}</p>
+            <p>brand: {{line.brand_name}}</p>
+
         </p>
+        <hr>
+    {% endfor %}
+
+    {% for comment in order.comment_set.all %}
+        <p>
+
+            <p>Текст комментария: {{comment.author.username}}</p>
+            <p>Автор комментария: {{comment.text}}</p>
+            <p>Рейтинг: {{comment.rating}}</p>
+
+        </p>
+        <hr>
     {% endfor %}
 {% endblock %}

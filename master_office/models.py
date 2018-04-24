@@ -49,7 +49,11 @@ class OrderLine(models.Model):
     def __str__(self):
         return self.feedback
 
-
 class Comment(models.Model):
     text = models.TextField(verbose_name="Текст комментария")
+    rating = models.IntegerField()
+    author = models.ForeignKey(User)
     order = models.ForeignKey("Order")
+
+    def __str__(self):
+        return self.text
