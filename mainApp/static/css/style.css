@@ -1964,6 +1964,7 @@ span.tab-img {
     float: left;
     width: 26.3333%;
     margin-right: 6.3333%;
+    
 }
 
 .tab-text {
@@ -2667,9 +2668,15 @@ span.tab-img {
     height: 83%;
     padding-bottom: 50px;
     padding-left: 35px;
-    border-left: 2px dashed #808080;
+    border-left: 2px dashed #808080;  
+    font-size: 0.9em;  
 }
 
+.way h1 {
+	font-size: 0.75;
+	font-weight: bold;
+	
+}
 .area-text-primary {
     font-size: 1.5em;
     font-family: 'Open Sans', sans-serif;
