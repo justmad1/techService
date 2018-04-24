@@ -15,6 +15,8 @@
     <script type="text/javascript" src="{% static 'js/jquery.easing.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.mixitup.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/headhesive.min.js' %}"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
+    </script>
     <script type="text/javascript">
     $(function() {
         var header = new Headhesive('.header');
@@ -78,14 +80,13 @@
 <body>
     <!-- start header -->
     <div class="header_bg">
-        <div class="wrap">
+        <div>
             <div class="header">
                 <div class="logo">
                     <h1 id="logo"><a class="link" href="{% url 'index' %}">Tech Service</a></h1>
                 </div>
                 <div class="h_right">
                     <ul class="menu">
-                        <li class="menu-item"><a href="{% url 'index' %}">Главная</a></li>
                         <li class="menu-item"><a href="/news">Новости</a></li>
                         <li class="menu-item"><a href="/contact">Контакты</a></li>
                         <li class="menu-item"><a href="{% url 'areas' %}">Категории</a></li>
@@ -95,7 +96,8 @@
                         <li class="non-clickable">Вы вошли как: {{ user.get_username }}</li>
                         <li class="menu-item logout"><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
                         {% else %}
-                        <li class="menu-item"><a href="{% url 'login'%}?next={{request.path}}">
+                        <li class="menu-item"><a href="{% url 'login'%}">
+                        <!-- <li class="menu-item"><a href="{% url 'login'%}?next={{request.path}}"> -->
                         Войти</a></li>
                         <li class="menu-item"><a href="{% url 'register'%}?next={{request.path}}">Зарегистрироваться</a></li>
                         {% endif %}
@@ -105,7 +107,6 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <hr>
         </div>
     </div>
     <!-- start main -->
@@ -116,6 +117,7 @@
     <div class="footer_bg">
         <div class="wrap">
             <div class="footer">
+                <hr id="hr-f">
                 <div class="span_of_4">
                     <div class="span1_of_4">
                         <h4>о нас</h4>
