@@ -95,7 +95,8 @@
                         <li class="non-clickable">Вы вошли как: {{ user.get_username }}</li>
                         <li class="menu-item logout"><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
                         {% else %}
-                        <li class="menu-item"><a href="{% url 'login'%}?next={{request.path}}">
+                        <li class="menu-item"><a href="{% url 'login'%}">
+                        <!-- <li class="menu-item"><a href="{% url 'login'%}?next={{request.path}}"> -->
                         Войти</a></li>
                         <li class="menu-item"><a href="{% url 'register'%}?next={{request.path}}">Зарегистрироваться</a></li>
                         {% endif %}
