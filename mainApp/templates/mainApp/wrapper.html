@@ -3,7 +3,7 @@
 
 <head>
     <title>Tech Service</title>
-    <link rel="icon" href = "static/images/heart.png" type="image/x-icon"> 
+    <link rel="icon" href = "static/images/heart.png" type="image/x-icon">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> {% load static %}
@@ -85,12 +85,15 @@
                 <div class="logo">
                     <h1 id="logo"><a class="link" href="{% url 'index' %}">Tech Service</a></h1>
                 </div>
+                {{user.groups.values_list}}
+                {{user.groups.values_list.name}}
+               <p>User: {{ user.is_admin }}</p>
                 <div class="h_right">
                     <ul class="menu">
                         <li class="menu-item"><a href="/news">Новости</a></li>
                         <li class="menu-item"><a href="/contact">Контакты</a></li>
                         <li class="menu-item"><a href="{% url 'areas' %}">Категории</a></li>
-                        <li class="menu-item"><a href="{% url 'master_orders' %}">Заказы</a></li>
+                        <li class="menu-item"><a href="{% url 'orders' %}">Заказы</a></li>
                         <li class="menu-item"><a href="/admin">Админ</a></li>
                         {% if user.is_authenticated %}
                         <li class="non-clickable">Вы вошли как: {{ user.get_username }}</li>
@@ -170,11 +173,11 @@
                                 <span>Приз «За вклад в развитие малого и среднего бизнеса Республики Беларусь»</span></a></li>
                             <li><a href="http://atrsib.ru/index.php/konkursy/pobediteli-konkursov/nominatsiya-luchshij-biznes-proekt">
                                 <span>Приз «За личный вклад в поддержку и развитие малого и среднего предпринимательства»</span></a></li>
-                            
+
                         </ul>
                     </div>
                     <div class="clear"></div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>

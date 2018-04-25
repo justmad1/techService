@@ -2,13 +2,15 @@
 {% extends "mainApp/wrapper.html" %}
 
 {% block content %}
+
+
+
 Информация о заказе:
 <p>status: {{order.status}}</p>
 <p>клиент: {{order.client.first_name}}</p>
 <p>цена: {{order.price}}</p>
 <p>Обратная связь: {{order.feedback}}</p>
-        <hr>
-        <hr>
+<hr>
     {% for line in order.orderline_set.all %}
         <p>
 
@@ -20,14 +22,32 @@
         <hr>
     {% endfor %}
 
-    {% for comment in order.comment_set.all %}
+<div class="large-offset-1 large-8 columns"
+<p>Комментарии:</p>
+    <form action="{% url 'addcomment' order.id %} " method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<button id="register-button" type="submit">Добавить комментарий</button>
+    </form>
+{% for comment in order.comment_set.all %}
         <p>
 
             <p>Текст комментария: {{comment.author.username}}</p>
-            <p>Автор комментария: {{comment.text}}</p>
+            <p>Автор комментария: {{comment.content}}</p>
             <p>Рейтинг: {{comment.rating}}</p>
 
         </p>
         <hr>
     {% endfor %}
+
+
+
+
+
+
+        <hr>
+        <hr>
+
+
+
 {% endblock %}

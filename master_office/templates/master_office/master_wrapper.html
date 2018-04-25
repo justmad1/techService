@@ -1,0 +1,9 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+    <a href="{% url 'masters_orders' %}">Мои заказы</a>
+
+    {% for order in object_list %}
+        <a href="{% url 'master_orders-detail' order.pk %}"><h3>{{ order.price }}</h3></a>
+    {% endfor %}
+{% endblock %}

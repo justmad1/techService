@@ -3,13 +3,20 @@ from .models import Comment
 from django.contrib.auth.models import User
 
 class CommentForm(forms.ModelForm):
-    content = forms.CharField()
+    content = forms.CharField(label="Ваш комментарий",required=True)
 
     class Meta:
         model = Comment
         fields = ('content',)
 
-
+    def save(self, commit=True):
+        comment = super(forms.ModelForm, self).save(commit=False)
+        comment.content = self.cleaned_data["content"]
+        # comment. = self.cleaned_data["first_name"]
+        # user.last_name = self.cleaned_data["last_name"]
+        if commit:
+            comment.save()
+        return comment
     # def save(self, commit=True):
     #     comment = super(ModelForm, self).save(commit=False)
     #     comment.content = self.cleaned_data["content"]

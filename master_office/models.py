@@ -53,7 +53,7 @@ class Comment(models.Model):
     content = models.TextField(verbose_name="Текст комментария")
     rating = models.IntegerField(default = 0)
     author = models.ForeignKey(User)
-    order = models.ForeignKey("Order")
+    order = models.ForeignKey(Order)
     date = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.content
