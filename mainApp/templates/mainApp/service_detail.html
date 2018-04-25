@@ -1,13 +1,11 @@
-{% extends "mainApp/wrapper.html" %}
-
-{% block content %}
-    <a href="{% url 'areas-detail' service.area.id %}" class="btn btn-primary">Вернуться к категории</a>
-    <br>
-    <br>
+{% extends "mainApp/wrapper.html" %} {% block content %}
+<div class="text-container-center">
     <h1>Информация об услуге: </h1>
     <h5>Название: {{service.name}}</h5>
     <h5>Описание: {{service.description}}</h5>
     <h5>Время выполнения: {{service.time}}</h5>
     <h5>Стоимость: {{service.price}}</h5>
+    <a href="{% url 'areas-detail' service.area.id %}" class="btn btn-primary">Вернуться к категории</a>
     <a href="{% url 'order' %}" class="btn btn-primary">Оформить заказ</a>
+</div>
 {% endblock %}
