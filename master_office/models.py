@@ -50,10 +50,10 @@ class OrderLine(models.Model):
         return self.feedback
 
 class Comment(models.Model):
-    text = models.TextField(verbose_name="Текст комментария")
-    rating = models.IntegerField()
+    content = models.TextField(verbose_name="Текст комментария")
+    rating = models.IntegerField(default = 0)
     author = models.ForeignKey(User)
     order = models.ForeignKey("Order")
-
+    date = models.DateTimeField(auto_now=True)
     def __str__(self):
-        return self.text
+        return self.content

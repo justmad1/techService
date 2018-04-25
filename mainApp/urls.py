@@ -19,4 +19,7 @@ urlpatterns = [
     url(r'^area/create/$', views.AreaCreate.as_view(), name='area-create'),
     url(r'^area/(?P<pk>\d+)/update/$', views.AreaUpdate.as_view(), name='area-update'),
     url(r'^area/(?P<pk>\d+)/delete/$', views.AreaDelete.as_view(), name='area-delete'),
+
+    url(r'^add_comment/(?P<pk>\d+)/$', views.add_comment, name=""),
+
 ]

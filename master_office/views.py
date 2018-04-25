@@ -7,6 +7,8 @@ from news.models import Articles
 from django.contrib.auth.forms import UserCreationForm
 from mainApp.forms import UserRegisterForm
 from django.http import HttpResponseRedirect
+from .forms import CommentForm
+from django.views.decorators.http import require_http_methods
 
 # def index(request):
 #     num_categories=Area.objects.all().count()
@@ -26,6 +28,7 @@ def orders(request):
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from master_office.models import Order
+from django.shortcuts import get_object_or_404
 
 class OrderList(ListView):
     model = Order
@@ -33,6 +36,58 @@ class OrderList(ListView):
 class OrderDetailView(DetailView):
     model = Order
 
+
+
+def add_comment_to_order(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.order = order
+            comment.author = auth.get_user(request)
+            comment.save()
+            return redirect('master_orders-detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'master_office/order_detail.html', {'form': form})
+
+
+def add_comment(request):
+    OrderDetailView.as_view()
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = CommentForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = CommentForm()
+
+    return render(request, 'order_detail.html', {'form': form})
+
+
+# @login_required
+# @require_http_methods(["POST"])
+# def add_comment(request, order_id):
+
+#     form = CommentForm(request.POST)
+#     order = get_object_or_404(Order, id=article_id)
+
+#     if form.is_valid():
+#         comment = Comment()
+#         comment.order = order
+#         comment.author = auth.get_user(request)
+#         comment.content = form.cleaned_data['comment_area']
+#         comment.save()
+
+#     return redirect(article.get_absolute_url())
 
 # class ServiceDetailView(DetailView):
 #     model = Service
