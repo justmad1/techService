@@ -18,6 +18,8 @@ from .forms import CommentForm
 from django.views.decorators.http import require_http_methods
 import django.contrib.auth
 
+from django.forms.formsets import formset_factory
+
 # def index(request):
 #     num_categories=Area.objects.all().count()
 #     num_articles=Articles.objects.all().count()
@@ -35,7 +37,7 @@ def orders(request):
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from master_office.models import Order
+from master_office.models import Order, OrderLine
 from django.shortcuts import get_object_or_404
 
 class OrderList(ListView):
@@ -79,6 +81,51 @@ def addcomment(request, pk):
     else:
         form = CommentForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+
+
+# >>> for form in formset:
+# ...     print(form.as_table())
+#         form = OrderForm(request.POST)
+#         if form.is_valid():
+
+
+
+# >>>
+# >>> ArticleFormSet = formset_factory(ArticleForm)
+
+#     order = models.ForeignKey('Order', on_delete=models.CASCADE)
+#     service = models.ForeignKey(Service, on_delete=models.CASCADE)
+#     master = models.ForeignKey('Master', on_delete=models.CASCADE, blank=True)
+#     brand_name = models.CharField(max_length = 20)
+#     device_name = models.CharField(max_length = 20)
+#     serial_id = models.CharField(max_length = 20)
+#     feedback = models.TextField(blank=True)
+#     trouble_description = models.TextField()
+#     status = models.IntegerField(default = 0)
+
+
+
+# comment.author = request.user
+#     author = Author.objects.get(pk=author_id)
+#     BookInlineFormSet = inlineformset_factory(Author, Book, fields=('title',))
+#     if request.method == "POST":
+#         formset = BookInlineFormSet(request.POST, request.FILES, instance=author)
+#         if formset.is_valid():
+#             formset.save()
+#             # Do something. Should generally end with a redirect. For example:
+#             return HttpResponseRedirect(author.get_absolute_url())
+#     else:
+#         formset = BookInlineFormSet(instance=author)
+#     return render_to_response("manage_books.html", {
+#         "formset": formset,
+#     })
+
+
+
+
+
 
     # return redirect('master_orders-detail', pk=pk, {'form': form})
 

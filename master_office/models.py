@@ -23,13 +23,13 @@ class Order(models.Model):
     status = models.IntegerField(default = 0)
     price = models.FloatField()
     begin_date = models.DateTimeField(auto_now=True)
-    end_date = models.DateTimeField()
-    expected_date = models.DateTimeField()
-    rating = models.IntegerField(default = 0)
-    feedback = models.TextField()
+    end_date = models.DateTimeField(blank=True, null=True)
+    expected_date = models.DateTimeField(blank=True, null=True)
+    rating = models.IntegerField(default = 0, blank=True,null=True)
+    feedback = models.TextField(blank=True,null=True)
 
     def __str__(self):
-        return self.feedback
+        return self.client.username
 
     def get_absolute_url(self):
         return reverse('master_orders-detail', args=[str(self.id)])
@@ -38,16 +38,21 @@ class Order(models.Model):
 class OrderLine(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    master = models.ForeignKey('Master', on_delete=models.CASCADE)
+    master = models.ForeignKey('Master', on_delete=models.CASCADE, blank=True, null = True)
     brand_name = models.CharField(max_length = 20)
     device_name = models.CharField(max_length = 20)
     serial_id = models.CharField(max_length = 20)
-    feedback = models.TextField()
+    feedback = models.TextField(blank=True, null = True)
     trouble_description = models.TextField()
     status = models.IntegerField(default = 0)
 
     def __str__(self):
         return self.feedback
+
+
+    def get_absolute_url(self):
+        return reverse('orders')
+
 
 class Comment(models.Model):
     content = models.TextField(verbose_name="Текст комментария")

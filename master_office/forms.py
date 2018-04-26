@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import Comment, Order, OrderLine
 from django.contrib.auth.models import User
 
 class CommentForm(forms.ModelForm):
@@ -17,6 +17,32 @@ class CommentForm(forms.ModelForm):
         if commit:
             comment.save()
         return comment
+
+
+    # def save(self, commit=True):
+    #     comment = super(forms.ModelForm, self).save(commit=False)
+    #     comment.content = self.cleaned_data["content"]
+    #     # comment. = self.cleaned_data["first_name"]
+    #     # user.last_name = self.cleaned_data["last_name"]
+    #     if commit:
+    #         comment.save()
+    #     return comment
+
+    # order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    # brand_name = models.CharField(max_length = 20)
+    # device_name = models.CharField(max_length = 20)
+    # serial_id = models.CharField(max_length = 20)
+    # feedback = models.TextField(blank=True)
+    # trouble_description = models.TextField()
+    # status = models.IntegerField(default = 0)
+
+
+
+
+
+
+
+
     # def save(self, commit=True):
     #     comment = super(ModelForm, self).save(commit=False)
     #     comment.content = self.cleaned_data["content"]
