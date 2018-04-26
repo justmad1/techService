@@ -69,22 +69,36 @@ def book_detail_view(request,pk):
     )
 
 def make_order(request):
+    OrderLineFormSet = formset_factory(OrderLineForm, extra=1)
+
     if request.method == 'POST':
-        form = OrderLineForm(request.POST)
-        if form.is_valid():
+        formset = OrderLineFormSet(request.POST)
+        if formset.is_valid():
+            print('valid')
             order = Order()
             order.client = request.user
             order.price = 0
             order.save()
-            line = form.save(False)
-            line.order = order
-            line.feedback = ""
-            form.save()
+            for form in formset:
+
+                if form.is_valid():
+                    order_line = form.save(commit=False)
+                    order_line.order = order
+                    order_line.feedback = "123"
+                    form.save()
+            # lines = formset.save(commit=False)
+            # for line in lines:
+            #     line.order = order
+            #     line.save()
+            # line = form.save(False)
+            # line.order = order
+            # line.feedback = ""
+            # form.save()
             return HttpResponseRedirect('/')
     else:
-        form = OrderLineForm()
+        formset = OrderLineFormSet()
 
-    return render(request, 'mainApp/temp.html', {'form': form})
+    return render(request, 'mainApp/temp.html', {'formset': formset})
 
     # OrderLineFormSet = formset_factory(OrderLineForm)
     # formset = OrderLineFormSet()
