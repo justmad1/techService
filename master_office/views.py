@@ -7,7 +7,7 @@ from .models import Comment, Master, OrderLine
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from news.models import Articles
-
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from mainApp.forms import UserRegisterForm
 from django.http import HttpResponseRedirect
@@ -17,28 +17,18 @@ from django.http import HttpResponseRedirect
 from .forms import CommentForm
 from django.views.decorators.http import require_http_methods
 import django.contrib.auth
-
-from django.forms.formsets import formset_factory
-
-# def index(request):
-#     num_categories=Area.objects.all().count()
-#     num_articles=Articles.objects.all().count()
-#     num_instances_available=Articles.objects.filter(author__exact='kate').count()
-#     return render(
-#         request,
-#         'mainApp/home.html',
-#         context={'num_categories':num_categories,'num_articles':num_articles,'num_instances_available':num_instances_available},
-#     )
-
-@login_required
-def orders(request):
-    pass
-
-
+from mainApp.models import Area, Service
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from master_office.models import Order, OrderLine
 from django.shortcuts import get_object_or_404
+
+from django.forms.formsets import formset_factory
+
+
+@login_required
+def orders(request):
+    pass
 
 class OrderList(ListView):
     model = Order
@@ -57,15 +47,47 @@ def order(request, pk=1):
     args['username'] = request.user
     return render(request, 'master_office/order_detail.html', args)
 
-    # return render_to_response('order_detail.html', args)
+def show_orderlines(request):
+    args = {}
+    # args.update(csrf(request))
 
+    master = Master.objects.get(user_id = request.user.id)
+    args['serveces'] = Service.objects.filter(area__in=master.areas.all)
+    args['orderlines'] = OrderLine.objects.filter(service__in=args['serveces'].all)
+    args['page'] = 'all_orderlines'
+    return render(request, 'master_office/orderline_list.html', args)
+# module.workflow_set.filter(trigger_roles__in=[self.role], allowed=True)
+# eventgroups__in=u.groups.all())
 def masters_orders(request):
     args = {}
     # args.update(csrf(request))
-    args['master'] = Master.objects.get(user_id=request.user.id)
-    args['object_list'] = OrderLine.objects.filter(master=args['master']) #  Order.objects.get(master.id = request.user.id)
-    return render(request, 'master_office/order_list.html', args)
+    # args['master'] = Master.objects.get(user=request.user)
+    master = Master.objects.get(user_id = request.user.id)
+    args['orderlines'] = OrderLine.objects.filter(master=master) #  Order.objects.get(master.id = request.user.id)
+    args['page'] = 'masters_orderlines'
+    return render(request, 'master_office/orderline_list.html', args)
 
+
+def masters_closed_orders(request):
+    args = {}
+    # args.update(csrf(request))
+    # args['master'] = Master.objects.get(user=request.user)
+    master = Master.objects.get(user_id = request.user.id)
+    args['orderlines'] = OrderLine.objects.filter(master=master).filter(status=1) #  Order.objects.get(master.id = request.user.id)
+    args['page'] = 'closed'
+    return render(request, 'master_office/orderline_list.html', args)
+
+def take_order(request, pk):
+    args = {}
+    # args.update(csrf(request))
+    # args['master'] = Master.objects.get(user=request.user)
+
+    master = Master.objects.get(user_id = request.user.id)
+    line = OrderLine.objects.get(id = pk)
+    area = Area.objects.get(id = line.service.area.id)
+    line.master = master
+    line.save()
+    return render(request, 'master_office/orderline_list.html', args)
 
 def addcomment(request, pk):
     if request.POST:
@@ -240,3 +262,14 @@ def addcomment(request, pk):
 # class AreaDelete(DeleteView):
 #     model = Area
 #     success_url = reverse_lazy('areas')
+
+
+# def index(request):
+#     num_categories=Area.objects.all().count()
+#     num_articles=Articles.objects.all().count()
+#     num_instances_available=Articles.objects.filter(author__exact='kate').count()
+#     return render(
+#         request,
+#         'mainApp/home.html',
+#         context={'num_categories':num_categories,'num_articles':num_articles,'num_instances_available':num_instances_available},
+#     )

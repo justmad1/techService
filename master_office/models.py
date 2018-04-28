@@ -13,7 +13,7 @@ class Master(models.Model):
     photo = models.ImageField(default = "")
     phone = models.CharField(max_length = 20, default = "")
     rating = models.IntegerField(default = 0)
-
+    areas = models.ManyToManyField(Area)
     def __str__(self):
         return self.user.username
 
@@ -49,16 +49,15 @@ class OrderLine(models.Model):
     def __str__(self):
         return self.feedback
 
-
     def get_absolute_url(self):
         return reverse('orders')
 
-
 class Comment(models.Model):
     content = models.TextField(verbose_name="Текст комментария")
-    rating = models.IntegerField(default = 0)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, null = True)
     order = models.ForeignKey(Order)
     date = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.content
+
+
