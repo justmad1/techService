@@ -3,7 +3,7 @@
 
 <head>
     <title>Tech Service</title>
-    <link rel="icon" href = "static/images/heart.png" type="image/x-icon"> 
+    <link rel="icon" href="static/images/heart.png" type="image/x-icon">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'> {% load static %}
@@ -91,14 +91,21 @@
                         <li class="menu-item"><a href="/contact">Контакты</a></li>
                         <li class="menu-item"><a href="{% url 'areas' %}">Категории</a></li>
                         <li class="menu-item"><a href="{% url 'master_orders' %}">Заказы</a></li>
+                        {% for i in user.groups.values_list %} {% if "ServiceAdmin" in i %}
                         <li class="menu-item"><a href="/admin">Админ</a></li>
-                        {% if user.is_authenticated %}
+                        {% elif "ServiceMaster" in i%}
+                        <li class="menu-item"><a href="{% url 'master_orders'%}">Кабинет мастера</a></li>
+                        {% elif "ServiceClient" in i%}
+                        <li class="menu-item"><a href="/admin">Личный кабинет</a></li>
+                        {% endif %} {% endfor %} {% if user.is_authenticated %}
                         <li class="non-clickable">Вы вошли как: {{ user.get_username }}</li>
                         <li class="menu-item logout"><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
                         {% else %}
-                        <li class="menu-item"><a href="{% url 'login'%}">
-                        <!-- <li class="menu-item"><a href="{% url 'login'%}?next={{request.path}}"> -->
-                        Войти</a></li>
+                        <li class="menu-item">
+                            <a href="{% url 'login'%}">
+                                <!-- <li class="menu-item"><a href="{% url 'login'%}?next={{request.path}}"> -->
+                                Войти</a>
+                        </li>
                         <li class="menu-item"><a href="{% url 'register'%}?next={{request.path}}">Зарегистрироваться</a></li>
                         {% endif %}
                     </ul>
@@ -115,13 +122,12 @@
     </div>
     <!-- footer -->
     <div class="footer_bg">
-        <div class="wrap">
-            <div class="footer">
-                <hr id="hr-f">
+        <div class="footer">
+            <div class="wrap">
                 <div class="span_of_4">
                     <div class="span1_of_4">
                         <h4>о нас</h4>
-                        <p>Наша компании «TECH SERVICE» оказывает услуги по настройке и ремонту любоговида техники в Минске и в Минской области.</p>
+                        <p>Наша компании «TECH SERVICE» оказывает услуги по настройке и ремонту любого вида техники в Минске и в Минской области.</p>
                         <span>Адрес</span>
                         <p class="top">ул. Петруся Бровки 6,</p>
                         <p>БГУИР Корпус №1</p>
@@ -170,11 +176,10 @@
                                 <span>Приз «За вклад в развитие малого и среднего бизнеса Республики Беларусь»</span></a></li>
                             <li><a href="http://atrsib.ru/index.php/konkursy/pobediteli-konkursov/nominatsiya-luchshij-biznes-proekt">
                                 <span>Приз «За личный вклад в поддержку и развитие малого и среднего предпринимательства»</span></a></li>
-                            
                         </ul>
                     </div>
                     <div class="clear"></div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>

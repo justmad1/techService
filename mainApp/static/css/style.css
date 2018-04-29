@@ -244,7 +244,8 @@ img {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #ffffff;
+    background: url(/static/images/tile-main.png);
+    background-repeat: repeat;
     font-size: 100%;
 }
 
@@ -261,7 +262,6 @@ body {
 /* start header */
 
 .describe {
-    background: #ffffff;
     padding: 2% 10%;
     padding-left: 10%;
 }
@@ -550,8 +550,8 @@ body {
 
 .h_left h2 {
     font-size: 1.5em;
-    color: #c0c0c0;
-    font-weight: 400;
+    color: #777;
+    font-weight: 500;
     margin-bottom: 50px;
 }
 
@@ -560,7 +560,6 @@ body {
     font-size: 0.8725em;
     color: #c0c0c0;
 }
-
 
 /* start soc_icons */
 
@@ -869,8 +868,9 @@ body {
 
 .footer {
     float: left;
-<<<<<<< HEAD
-	padding:4%;
+    padding-top: 10px;
+    background-color: #eee;
+    border-top: 2px solid #19BD9B;
 }
 .span_of_4{
 	display: block;
@@ -885,14 +885,12 @@ body {
 }
 .span1_of_4 h4{
 	font-size: 1.2em;
-	color: #c0c0c0;
 	text-transform: uppercase;
 	font-weight: 600;
 	margin-bottom: 8%;
 }
 .span1_of_4 p{
 	font-size: 0.8725em;
-	color: #a9a9a9;
 	line-height:1.8em;
 	font-weight: 400;
 }
@@ -900,12 +898,11 @@ body {
 	margin-top: 4%;
 }
 .span1_of_4 span.bg{
-	background: #ECF0F1;
+    border-top: 2px solid #19BD9B;
 	padding: 4%;
 }
 .span1_of_4 span{
 	font-size: 1em;
-	color: #a0a0a0;
 	margin-top: 8%;
 	display: block;
 	line-height:1.5em;
@@ -2647,8 +2644,20 @@ span.tab-img {
     margin: auto;
 }
 
+.devices img {
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+}
+
+.devices img:hover {
+    -webkit-transform: scale(1.05);
+ -moz-transform: scale(1.05);
+ -o-transform: scale(1.05);
+}
+
 .text-container-center {
-    background-color: ##FFFAFA;
+    background-color: #eee;
     width: 75%;
     height: 550px;
     margin: auto;
@@ -2659,6 +2668,20 @@ span.tab-img {
     border: 2px solid #808080;
     border-radius: 5px;
     overflow: hidden;
+}
+
+.text-container-center hr {
+    width: 85%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.area-button {
+    float: left;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
 .way {
@@ -2690,7 +2713,11 @@ span.tab-img {
 }
 
 .area-text-description {
-    margin: 4% 0%;
+    margin: 4%;
+}
+
+.time-price {
+    padding: 0% 4%;
 }
 
 .divide-30 {
@@ -2804,21 +2831,25 @@ span.tab-img {
     width: 40%;
     float: left;
 }
+
 .lost-password-container {
     float: left;
     width: 100%;
     text-align: center;
 }
+
 .lost-password {
     color: #19BD9B;
     font-size: 1.3em;
 }
+
 .login-button-container {
     padding-left: 5%;
     padding-top: 5%;
     float: left;
     width: 45%
 }
+
 .alert-message {
     width: 30%;
     height: 50px;
@@ -2831,4 +2862,54 @@ span.tab-img {
     margin-top: 30px;
     margin-bottom: 30px;
     font-family: 'Open Sans', sans-serif;
+}
+
+.fieldWrapper {
+    width: 60%;
+    margin: auto;
+    text-align: right;
+}
+
+.fieldWrapper .input {
+    font-size: 1.2em;
+    width: 60%;
+    float: left;
+    text-align: right;
+}
+
+.fieldWrapper .input .form-edit-box {
+    padding-left: 3%;
+    padding-right: 1%;
+}
+
+.error {
+
+    font-size: 1.2em;
+    width: 35%;
+    float: left;
+    text-align: center;
+}
+
+.errorlist {
+    text-align: center;
+}
+
+.form-container {
+    font-size: 
+}
+    
+.register-button-container {
+    margin-top: 2%;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+#register-button {
+    font-size: 1.05em;
+    width: 25%;
+    height: 30px;
+    margin: auto;
+    background-color: #19BD9B;
+    border-radius: 5px;
 }
