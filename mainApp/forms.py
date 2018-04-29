@@ -6,9 +6,12 @@ from django.forms import inlineformset_factory
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    first_name = forms.CharField(label='first_name', max_length=100)
-    last_name = forms.CharField(label='last_name', max_length=100)
+    first_name = forms.CharField(label='Имя', max_length=100)
+    last_name = forms.CharField(label='Фамилия', max_length=100)
+    error_css_class = 'error'
+    required_css_class = 'required'
 
+    
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2", "first_name", "last_name")
