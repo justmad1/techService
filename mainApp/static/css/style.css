@@ -2657,7 +2657,7 @@ span.tab-img {
 }
 
 .text-container-center {
-    background-color: ##FFFAFA;
+    background-color: #eee;
     width: 75%;
     height: 550px;
     margin: auto;
@@ -2668,6 +2668,20 @@ span.tab-img {
     border: 2px solid #808080;
     border-radius: 5px;
     overflow: hidden;
+}
+
+.text-container-center hr {
+    width: 85%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.area-button {
+    float: left;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
 .way {
@@ -2699,7 +2713,11 @@ span.tab-img {
 }
 
 .area-text-description {
-    margin: 4% 0%;
+    margin: 4%;
+}
+
+.time-price {
+    padding: 0% 4%;
 }
 
 .divide-30 {
@@ -2813,21 +2831,25 @@ span.tab-img {
     width: 40%;
     float: left;
 }
+
 .lost-password-container {
     float: left;
     width: 100%;
     text-align: center;
 }
+
 .lost-password {
     color: #19BD9B;
     font-size: 1.3em;
 }
+
 .login-button-container {
     padding-left: 5%;
     padding-top: 5%;
     float: left;
     width: 45%
 }
+
 .alert-message {
     width: 30%;
     height: 50px;
@@ -2840,4 +2862,54 @@ span.tab-img {
     margin-top: 30px;
     margin-bottom: 30px;
     font-family: 'Open Sans', sans-serif;
+}
+
+.fieldWrapper {
+    width: 60%;
+    margin: auto;
+    text-align: right;
+}
+
+.fieldWrapper .input {
+    font-size: 1.2em;
+    width: 60%;
+    float: left;
+    text-align: right;
+}
+
+.fieldWrapper .input .form-edit-box {
+    padding-left: 3%;
+    padding-right: 1%;
+}
+
+.error {
+
+    font-size: 1.2em;
+    width: 35%;
+    float: left;
+    text-align: center;
+}
+
+.errorlist {
+    text-align: center;
+}
+
+.form-container {
+    font-size: 
+}
+    
+.register-button-container {
+    margin-top: 2%;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+#register-button {
+    font-size: 1.05em;
+    width: 25%;
+    height: 30px;
+    margin: auto;
+    background-color: #19BD9B;
+    border-radius: 5px;
 }
