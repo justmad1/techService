@@ -24,7 +24,6 @@ def index(request):
         context={'num_categories':num_categories,'num_articles':num_articles,'num_instances_available':num_instances_available},
     )
 
-@login_required
 def contact(request):
     return render(request, 'mainApp/basic.html')
 
@@ -68,6 +67,7 @@ def book_detail_view(request,pk):
         context={'book':book_id,}
     )
 
+@login_required
 def make_order(request):
     OrderLineFormSet = formset_factory(OrderLineForm, extra=1)
 
@@ -151,7 +151,7 @@ def make_order(request):
 #     status = models.IntegerField(default = 0)
 
 
-
+@login_required
 def add_comment(request):
     OrderDetailView.as_view()
     # if this is a POST request we need to process the form data
