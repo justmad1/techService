@@ -4,12 +4,16 @@ from mainApp.views import UserCreationForm
 
 from django.views.generic import ListView, DetailView
 from mainApp.models import Area
-from mainApp.views import AreaList, AreaDetailView, ServiceDetailView
+from mainApp.views import AreaList, AreaDetailView, ServiceDetailView, MasterList, MasterDetailView
 
 urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^contact/$', views.contact, name="contact"),
     url(r'^register/$', views.register_user, name="register"),
+
+    url(r'^masters/$', MasterList.as_view(), name="masters"),
+    url(r'^masters/(?P<pk>\d+)$', MasterDetailView.as_view(), name="masters-detail"),
+
 
     url(r'^areas/$', AreaList.as_view(), name="areas"),
     url(r'^areas/(?P<pk>\d+)$', AreaDetailView.as_view(), name="areas-detail"),

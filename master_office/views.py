@@ -53,7 +53,7 @@ def show_orderlines(request):
 
     master = Master.objects.get(user_id = request.user.id)
     args['serveces'] = Service.objects.filter(area__in=master.areas.all)
-    args['orderlines'] = OrderLine.objects.filter(service__in=args['serveces'].all)
+    args['orderlines'] = OrderLine.objects.filter(service__in=args['serveces'].all).exclude(master__isnull=False)
     args['page'] = 'all_orderlines'
     return render(request, 'master_office/orderline_list.html', args)
 # module.workflow_set.filter(trigger_roles__in=[self.role], allowed=True)
@@ -63,7 +63,7 @@ def masters_orders(request):
     # args.update(csrf(request))
     # args['master'] = Master.objects.get(user=request.user)
     master = Master.objects.get(user_id = request.user.id)
-    args['orderlines'] = OrderLine.objects.filter(master=master) #  Order.objects.get(master.id = request.user.id)
+    args['orderlines'] = OrderLine.objects.filter(master=master).filter(status=0) #  Order.objects.get(master.id = request.user.id)
     args['page'] = 'masters_orderlines'
     return render(request, 'master_office/orderline_list.html', args)
 
@@ -87,7 +87,24 @@ def take_order(request, pk):
     area = Area.objects.get(id = line.service.area.id)
     line.master = master
     line.save()
-    return render(request, 'master_office/orderline_list.html', args)
+    return masters_orders(request)
+    # return render(request, 'master_office/orderline_list.html', args)
+
+def close_order(request, pk):
+    args = {}
+    # args.update(csrf(request))
+    # args['master'] = Master.objects.get(user=request.user)
+
+    master = Master.objects.get(user_id = request.user.id)
+    line = OrderLine.objects.get(id = pk)
+    line.status = 1
+
+    # area = Area.objects.get(id = line.service.area.id)
+    # line.master = master
+    line.save()
+    return masters_orders(request)
+    # return render(request, 'master_office/orderline_list.html', args)
+
 
 def addcomment(request, pk):
     if request.POST:

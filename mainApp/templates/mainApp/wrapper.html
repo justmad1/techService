@@ -90,13 +90,14 @@
                         <li class="menu-item"><a href="/news">Новости</a></li>
                         <li class="menu-item"><a href="/contact">Контакты</a></li>
                         <li class="menu-item"><a href="{% url 'areas' %}">Категории</a></li>
+                        <li class="menu-item"><a href="{% url 'masters' %}">Мастера</a></li>
                         {% for i in user.groups.values_list %}
                             {% if "ServiceAdmin" in i %}
                                 <li class="menu-item"><a href="/admin">Админ</a></li>
                             {% elif "ServiceMaster" in i%}
                                 <li class="menu-item"><a href="{% url 'masters_orders'%}">Кабинет мастера</a></li>
-                            {% elif "ServiceClient" in i%}
-                                <li class="menu-item"><a href="/admin">Личный кабинет</a></li>
+                            {% elif user.is_authenticated %}
+                            <li class="menu-item"><a href="/admin">Личный кабинет</a></li>
                             {% endif %}
                         {% endfor %}
 
@@ -124,12 +125,14 @@
         {% block content %} {% endblock %}
     </div>
     <!-- footer -->
+    {% block footer %}
     <div class="footer_bg">
         <div class="footer">
             <div class="wrap">
                 <div class="span_of_4">
                     <div class="span1_of_4">
                         <h4>о нас</h4>
+
                         <p>Наша компании «TECH SERVICE» оказывает услуги по настройке и ремонту любого вида техники в Минске и в Минской области.</p>
                         <span>Адрес</span>
                         <p class="top">ул. Петруся Бровки 6,</p>
@@ -186,6 +189,8 @@
             </div>
         </div>
     </div>
+{{master.phone}}
+    {% endblock %}
 </body>
 
 </html>

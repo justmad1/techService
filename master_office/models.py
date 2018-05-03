@@ -10,7 +10,7 @@ class Master(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    photo = models.ImageField(default = "")
+    photo = models.ImageField(upload_to='avatars/%Y/%m/%d/', default = "")
     phone = models.CharField(max_length = 20, default = "")
     rating = models.IntegerField(default = 0)
     areas = models.ManyToManyField(Area)

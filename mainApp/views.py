@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from news.models import Articles
 
+from django.contrib.auth.models import Group
 from django.contrib.auth.forms import UserCreationForm
 from mainApp.forms import UserRegisterForm, OrderLineForm
 from django.http import HttpResponseRedirect
@@ -10,7 +11,7 @@ from django.http import HttpResponseRedirect
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from master_office.models import Order, OrderLine
+from master_office.models import Order, OrderLine, Master
 from django.shortcuts import get_object_or_404
 from django.forms.formsets import formset_factory
 
@@ -33,11 +34,24 @@ def register_user(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
+        #     group = Group.objects.get(name='ServiceClient')
+        #     user.groups.add(group)
+        #     # form.save()
+        #     # user.groups.add(group)
+        #     # user.groups.add(1) # add by id
+        # # /group.user_set.add(user)
+        #     user.save()
             return HttpResponseRedirect('/')
     else:
         form = UserRegisterForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+
+# g = Group.objects.get(name='My Group Name')
+# users = User.objects.all()
+# for u in users:
+#     g.user_set.add(u)
 
 
 from django.views.generic import ListView
@@ -52,6 +66,14 @@ class ServiceDetailView(DetailView):
 
 class AreaDetailView(DetailView):
     model = Area
+
+class MasterList(ListView):
+    model = Master
+
+class MasterDetailView(DetailView):
+    model = Master
+
+
 
 def book_detail_view(request,pk):
     try:
@@ -70,7 +92,6 @@ def book_detail_view(request,pk):
 @login_required
 def make_order(request):
     OrderLineFormSet = formset_factory(OrderLineForm, extra=1)
-
     if request.method == 'POST':
         formset = OrderLineFormSet(request.POST)
         if formset.is_valid():
@@ -85,7 +106,15 @@ def make_order(request):
                     order_line = form.save(commit=False)
                     order_line.order = order
                     order_line.feedback = "123"
+                    order_line.price = order_line.service.price
                     form.save()
+
+            all_lines_in_order = OrderLine.objects.filter(order=order)
+            total_price = 0
+            for one_line in all_lines_in_order:
+                total_price = total_price + one_line.service.price
+            order.price = total_price
+            order.save()
             # lines = formset.save(commit=False)
             # for line in lines:
             #     line.order = order
@@ -194,3 +223,7 @@ class AreaUpdate(UpdateView):
 class AreaDelete(DeleteView):
     model = Area
     success_url = reverse_lazy('areas')
+
+def do(self, **kwargs):
+    print("1")
+    return "1"
