@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'cart',
     'news',
     'master_office',
+    'client_office',
     'mainApp',
     'webexample',
     'django.contrib.admin',

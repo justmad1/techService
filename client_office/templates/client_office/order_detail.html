@@ -1,0 +1,53 @@
+
+{% extends "client_office/client_wrapper.html" %}
+
+{% block client_content %}
+
+
+
+Информация о заказе:
+<p>status: {{order.status}}</p>
+<p>клиент: {{order.client.first_name}}</p>
+<p>цена: {{order.price}}</p>
+<p>Обратная связь: {{order.feedback}}</p>
+<hr>
+    {% for line in order.orderline_set.all %}
+        <p>
+
+            <p>Название услуги: {{line.service.name}}</p>
+            <p>Описание проблемы: {{line.touble_description}}</p>
+            <p>brand: {{line.brand_name}}</p>
+
+        </p>
+        <hr>
+    {% endfor %}
+
+<div class="large-offset-1 large-8 columns"
+<p>Комментарии:</p>
+    <form action="{% url 'addcomment' order.id %} " method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<button id="register-button" type="submit">Добавить комментарий</button>
+    </form>
+{% for comment in order.comment_set.all %}
+        <p>
+
+            <p>Текст комментария: {{comment.author.username}}</p>
+            <p>Автор комментария: {{comment.content}}</p>
+            <p>Рейтинг: {{comment.rating}}</p>
+
+        </p>
+        <hr>
+    {% endfor %}
+
+
+
+
+
+
+        <hr>
+        <hr>
+
+
+
+{% endblock %}

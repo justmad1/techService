@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^webexample/', include("webexample.urls")),
     url(r'^news/', include("news.urls")),
     url(r'^master/', include("master_office.urls")),
+    url(r'^client/', include("client_office.urls")),
 ]
 
 if settings.DEBUG:

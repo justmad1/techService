@@ -1,6 +1,5 @@
 from django.conf.urls import include, url
 from . import views
-from mainApp.views import UserCreationForm
 
 from django.views.generic import ListView, DetailView
 from mainApp.models import Area

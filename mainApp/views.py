@@ -1,18 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from news.models import Articles
-
-from django.contrib.auth.models import Group
-from django.contrib.auth.forms import UserCreationForm
 from mainApp.forms import UserRegisterForm, OrderLineForm
 from django.http import HttpResponseRedirect
-
-
-
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
 from master_office.models import Order, OrderLine, Master
-from django.shortcuts import get_object_or_404
 from django.forms.formsets import formset_factory
 
 def index(request):
