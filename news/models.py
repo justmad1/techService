@@ -8,3 +8,7 @@ class Articles(models.Model):
 
     def __str__(self):
         return self.title
+
+    def do(self, **kwargs):
+        print("1")
+        return "1"

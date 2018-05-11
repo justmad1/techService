@@ -1,0 +1,10 @@
+{% extends "mainApp/wrapper.html" %} {% block content %}
+<div class="text-container-center">
+    {% block client_content %} {% endblock %}
+        <ul class="client-buttons-container">
+            <li class="item"><a href="{% url 'client_page' %}">Кабинет клиента</a></li>
+            <li class="item"><a href="{% url 'current_clients_orders' %}">Текущие заказы</a></li>
+            <li class="item"><a href="{% url 'clients_closed_orders' %}">Закрытые заказы</a></li>
+        </ul>
+</div>
+{% endblock %}
