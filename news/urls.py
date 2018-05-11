@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)$',
         DetailView.as_view(model=Articles, template_name='news/post.html'))
 ]
+
 # pk - primary key
 # ?P - вместе обрабатывается
 # \d - digital
