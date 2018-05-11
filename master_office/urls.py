@@ -1,19 +1,22 @@
 from django.conf.urls import include, url
-from . import views
 
-from django.views.generic import ListView, DetailView
-from master_office.views import OrderList, OrderDetailView
+from mainApp.views import MasterDetailView
+from master_office.views import OrderList
+
 
 urlpatterns = [
-    url(r'^orders$', OrderList.as_view(), name="master_orders"),
-    url(r'^orders/(?P<pk>\d+)/$', OrderDetailView.as_view(), name="master_orders-detail"),
+    url(r'^my_orders/$', 'master_office.views.masters_orders', name="masters_orders"),
+    url(r'^my_closed_orders/$', 'master_office.views.masters_closed_orders', name="masters_closed_orders"),
+    url(r'^orders/take_order/(?P<pk>\d+)/$', 'master_office.views.take_order', name="take_order"),
+    url(r'^orders/close_order/(?P<pk>\d+)/$', 'master_office.views.close_order', name="close_order"),
 
-    # url(r'^areas/$', AreaList.as_view(), name="areas"),
-    # url(r'^areas/(?P<pk>\d+)$', AreaDetailView.as_view(), name="areas-detail"),
-    # url(r'^areas/service/(?P<pk>\d+)/$', ServiceDetailView.as_view(), name="service-detail"),
-    # url(r'^order/', views.make_order, name="order"),
+    url(r'^(?P<pk>\d+)/$', 'master_office.views.master_page', name="master_page"),
 
-    # url(r'^area/create/$', views.AreaCreate.as_view(), name='area-create'),
-    # url(r'^area/(?P<pk>\d+)/update/$', views.AreaUpdate.as_view(), name='area-update'),
-    # url(r'^area/(?P<pk>\d+)/delete/$', views.AreaDelete.as_view(), name='area-delete'),
+    # url(r'^orders/(?P<pk>\d+)/$', OrderDetailView.as_view(), name="master_orders-detail"),
+    # url(r'^add_comment/$', views.add_comment),
+
+    url(r'^orders/all_services/$', 'master_office.views.show_orderlines', name="orderlines"),
+    url(r'^orders/(?P<pk>\d+)/$', 'master_office.views.order', name="master_orders-detail"),
+    url(r'^orders/(?P<pk>\d+)/addcomment/$', 'master_office.views.addcomment', name="addcomment"),
+    # url(r'^orders/comment/(?P<article_id>[0-9]+)/$', views.add_comment, name='add_comment'),
 ]
