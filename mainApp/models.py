@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 class Area(models.Model):
     name = models.CharField(max_length = 120)
     description = models.TextField()
+    photo = models.ImageField(upload_to='areas/', default = "")
 
     def __str__(self):
         return self.name

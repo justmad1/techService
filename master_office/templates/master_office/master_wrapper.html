@@ -4,9 +4,9 @@
 
  <div class="h_right">
                     <ul class="menu">
+                        <li class="menu-item"><a href="{% url 'master_page' user.pk %}">Кабинет мастера</a></li>
                         <li class="menu-item"><a href="{% url 'masters_orders' %}">Мои строки всех заказов</a></li>
-
-                        <li class="menu-item"><a href="{% url 'orderlines' %}">всевсевсе заказы</a></li>
+                        <li class="menu-item"><a href="{% url 'orderlines' %}">новые заказы</a></li>
                         <li class="menu-item"><a href="{% url 'masters_closed_orders' %}">выполненные мной заказы</a></li>
 
                     </ul>

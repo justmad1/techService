@@ -3,7 +3,7 @@
     <a href="{% url 'areas-detail' area.pk %}">
         <div class="portfolio web" data-cat="web">
             <div class="portfolio-wrapper">
-                <div class="portfolio-img"><img src="{% static 'images/pic3.jpg'%}" alt="Area image" /></div>
+                <div class="portfolio-img"><img src={{area.photo.url}} alt="Area image" /></div>
                 <div class="label">
                     <div class="label-text">
                         <p class="text-title">{{ area.name }}</p>
