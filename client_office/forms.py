@@ -5,17 +5,19 @@ from master_office.models import Order
 
 
 class FeedbackForm(forms.ModelForm):
-    feedback = forms.CharField(label="Обратная связь",required=True)
+    feedback = forms.CharField(label="Оцените качество работы",required=True)
+    rating = forms.IntegerField(label="Рейтинг", required=True)
 
     class Meta:
         model = Order
-        fields = ('feedback',)
+        fields = ('feedback', 'rating')
 
     def save(self, commit=True):
-        comment = super(forms.ModelForm, self).save(commit=False)
-        comment.feedback = self.cleaned_data["feedback"]
+        order = super(forms.ModelForm, self).save(commit=False)
+        order.feedback = self.cleaned_data["feedback"]
+        order.rating = self.cleaned_data["rating"]
         # comment. = self.cleaned_data["first_name"]
         # user.last_name = self.cleaned_data["last_name"]
         if commit:
-            comment.save()
-        return comment
+            order.save()
+        return order

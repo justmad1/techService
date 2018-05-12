@@ -11,6 +11,10 @@ urlpatterns = [
     url(r'^orders/(?P<pk>\d+)/$', 'client_office.views.order', name="client_office-detail"),
 
     url(r'^orders/(?P<pk>\d+)/add_feedback/$', 'client_office.views.add_feedback', name="add_feedback"),
+
+
+
+
 # url(r'^my_orders/$', 'master_office.views.masters_orders', name="masters_orders"),
     # url(r'^my_closed_orders/$', 'master_office.views.masters_closed_orders', name="masters_closed_orders"),
     # url(r'^orders/take_order/(?P<pk>\d+)/$', 'master_office.views.take_order', name="take_order"),
