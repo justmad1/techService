@@ -114,7 +114,7 @@ def make_order(request):
             # line.order = order
             # line.feedback = ""
             # form.save()
-            return HttpResponseRedirect('/')
+            return render(request, 'mainApp/temp.html', {'formset': formset})
     else:
         formset = OrderLineFormSet()
 

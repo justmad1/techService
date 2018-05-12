@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, redirect
 from .models import Comment, Master
 from django.shortcuts import render
@@ -93,14 +94,24 @@ def close_order(request, pk):
     args = {}
     # args.update(csrf(request))
     # args['master'] = Master.objects.get(user=request.user)
-
-    master = Master.objects.get(user_id=request.user.id)
     line = OrderLine.objects.get(id=pk)
     line.status = 1
+    line.save()
+    order = Order.objects.get(id = line.order_id)
+    order_lines = OrderLine.objects.filter(order=order)
+    is_closed = True
 
+    for l in order_lines:
+        if l.status == 0:
+            is_closed = False
+            print("not closed")
+
+    if is_closed:
+        order.status = 1
+        order.end_date = datetime.datetime.now()
+    order.save()
     # area = Area.objects.get(id = line.service.area.id)
     # line.master = master
-    line.save()
     return masters_orders(request)
     # return render(request, 'master_office/orderline_list.html', args)
 
