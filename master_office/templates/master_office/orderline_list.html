@@ -1,3 +1,4 @@
+
 {% extends "master_office/master_wrapper.html" %}
 
 {% block master_content %}
@@ -8,22 +9,16 @@
     {% elif page == 'masters_orderlines' %}
         <p>My orders: </p>
     {% endif %}
-
-    {% if many_orders %}
-        {{ many_orders }}
-
-    {% endif %}
-
     {% if orderlines.is_empty %}
         <p>Нет заказов!</p>
     {% else %}
         {% for line in orderlines %}
 
-            <p>ID: {{ line.id }}</p>
+            <p>ID: {{line.id}}</p>
 
-            <p>status: {{ line.status }}</p>
-            <p>цена: {{ line.price }}</p>
-            <p>услуга: {{ line.service.name }}
+            <p>status: {{line.status}}</p>
+            <p>цена: {{line.price}}</p>
+            <p>услуга: {{line.service.name}}
             <a href="{% url 'master_orders-detail' line.order.pk %}"><h3> Показать весь заказ </h3></a>
             {% if page == 'all_orderlines' %}
                 <a href="{% url 'take_order' line.pk %}"><h3> Взяться за заказ </h3></a>

@@ -1,5 +1,9 @@
 from django.conf.urls import include, url
 
+from mainApp.views import MasterDetailView
+from master_office.views import OrderList
+
+
 urlpatterns = [
     url(r'^my_orders/$', 'master_office.views.masters_orders', name="masters_orders"),
     url(r'^my_closed_orders/$', 'master_office.views.masters_closed_orders', name="masters_closed_orders"),
@@ -13,5 +17,6 @@ urlpatterns = [
 
     url(r'^orders/all_services/$', 'master_office.views.show_orderlines', name="orderlines"),
     url(r'^orders/(?P<pk>\d+)/$', 'master_office.views.order', name="master_orders-detail"),
-    url(r'^orders/(?P<pk>\d+)/addcomment/$', 'master_office.views.addcomment', name="addcomment_master"),
+    url(r'^orders/(?P<pk>\d+)/addcomment/$', 'master_office.views.addcomment', name="addcomment"),
+    # url(r'^orders/comment/(?P<article_id>[0-9]+)/$', views.add_comment, name='add_comment'),
 ]
