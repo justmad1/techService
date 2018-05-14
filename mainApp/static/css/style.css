@@ -306,10 +306,13 @@ body {
     position: relative;
     float: right;
 }
-.green {
+.hr-green {
     border: none;
     background-color: #19BD9d; 
     height: 2px;
+}
+.hr-small {
+    width: 10%;
 }
 .menu {
     float: left;
@@ -2750,6 +2753,7 @@ span.tab-img {
     width: 50%;
     margin: auto;
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .area-container {
@@ -2958,31 +2962,42 @@ span.tab-img {
 }
 
 /* client */
-
-.client-container {
-    float: left;
-    width: 100%;
-    text-align: center;
+.orders {
+    margin: 50px;
 }
 
-.client-buttons-container {
-    padding-top: 50px;
-    float: left;
-    text-align: center;
-    width: 100%;
+a.area-text-primary {
+    color: red;
+}
+
+.order-ready {
+    width: 30%;
+    height: 50px;
+    background-color: #DCDCDC;
+    border: 3px solid #19BD9B;
+    border-radius: 10px;
     margin: auto;
-}
-
-.client-buttons-container .item{
-    float: left;
-    width: 33%;
-}
-
-.client-buttons-container .item a{
-    color: black;
-}
-
-.client-buttons-container .item a:hover{
     color: #19BD9B;
-    text-decoration: underline;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Open Sans', sans-serif;
 }
+
+.order {
+    width: 50%;
+    border: 1px dashed black;
+    border-radius: 10px;
+    padding: 50px;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.button {
+    font-size: 1.05em;
+    height: 30px;
+    background-color: #19BD9B;
+    border-radius: 5px;
+}
+

@@ -7,7 +7,6 @@
         <h2 class="area-text-primary">{{master.phone}} </h2>
         <hr>
         <div class="area-container">
-            <!-- <img src={{master.photo.url}} alt="Area image" /> -->
             {% for area in master.areas.all %}
             <div class="area-link-item">
                 <a class="area-link" href="{% url 'areas-detail' area.pk %}">{{ area.name }}</a>
