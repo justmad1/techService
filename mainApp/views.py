@@ -81,7 +81,7 @@ def book_detail_view(request,pk):
     )
 
 @login_required
-def make_order(request):
+def make_order(request, pk):
     OrderLineFormSet = formset_factory(OrderLineForm, extra=1)
     if request.method == 'POST':
         formset = OrderLineFormSet(request.POST)
@@ -116,7 +116,9 @@ def make_order(request):
             # form.save()
             return render(request, 'mainApp/temp.html', {'formset': formset})
     else:
-        formset = OrderLineFormSet()
+        service = Service.objects.get(pk=pk)
+        formset = OrderLineFormSet(initial=[{'service': service}])
+
 
     return render(request, 'mainApp/temp.html', {'formset': formset})
 

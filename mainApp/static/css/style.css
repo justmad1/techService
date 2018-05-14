@@ -868,6 +868,7 @@ body {
 
 .footer {
     float: left;
+    width: 100%;
     padding-top: 10px;
     background-color: #eee;
     border-top: 2px solid #19BD9B;
@@ -2883,7 +2884,6 @@ span.tab-img {
 }
 
 .error {
-
     font-size: 1.2em;
     width: 35%;
     float: left;
@@ -2912,4 +2912,34 @@ span.tab-img {
     margin: auto;
     background-color: #19BD9B;
     border-radius: 5px;
+}
+
+/* client */
+
+.client-container {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.client-buttons-container {
+    padding-top: 50px;
+    float: left;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+
+.client-buttons-container .item{
+    float: left;
+    width: 33%;
+}
+
+.client-buttons-container .item a{
+    color: black;
+}
+
+.client-buttons-container .item a:hover{
+    color: #19BD9B;
+    text-decoration: underline;
 }
