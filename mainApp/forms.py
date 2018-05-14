@@ -5,13 +5,13 @@ from master_office.models import OrderLine, Order, Service
 from django.forms import inlineformset_factory
 from django.contrib.auth.models import Group
 
+
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(label='Имя', max_length=100)
     last_name = forms.CharField(label='Фамилия', max_length=100)
     error_css_class = 'error'
     required_css_class = 'required'
-
 
     class Meta:
         model = User
@@ -27,19 +27,16 @@ class UserRegisterForm(UserCreationForm):
         return user
 
 
-
-
 class OrderLineForm(forms.ModelForm):
-    # service = forms.ModelChoiceField(queryset = Service.objects.all())
+    service = forms.ModelChoiceField(queryset=Service.objects.all(), required=True)
 
     class Meta:
         model = OrderLine
         fields = ['service', 'brand_name', 'device_name', 'serial_id', 'trouble_description']
 
-    def save(self, commit=True):
+    def save(self, commit=False):
         line = super(forms.ModelForm, self).save(commit=False)
-        # line.service = self.cleaned_data["service"]
+       # line.service = self.serice
         if commit:
             line.save()
         return line
-
