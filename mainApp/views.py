@@ -1,23 +1,34 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+
+from master_office.forms import CommentForm
+from master_office.views import OrderDetailView
 from news.models import Articles
 from mainApp.forms import UserRegisterForm, OrderLineForm
 from django.http import HttpResponseRedirect
 from master_office.models import Order, OrderLine, Master
 from django.forms.formsets import formset_factory
 
+
 def index(request):
-    num_categories=Area.objects.all().count()
-    num_articles=Articles.objects.all().count()
-    num_instances_available=Articles.objects.filter(author__exact='kate').count()
+    num_categories = Area.objects.all().count()
+    num_articles = Articles.objects.all().count()
+    num_instances_available = Articles.objects.filter(author__exact='kate').count()
     return render(
         request,
         'mainApp/home.html',
-        context={'num_categories':num_categories,'num_articles':num_articles,'num_instances_available':num_instances_available},
+        context={'num_categories': num_categories, 'num_articles': num_articles,
+                 'num_instances_available': num_instances_available},
     )
+
 
 def contact(request):
     return render(request, 'mainApp/basic.html')
+
+
+def get_feedback(request):
+    orders = Order.objects.filter(status=1).exclude(feedback__isnull=True).order_by('-end_date')
+    return render(request, 'mainApp/feedback.html', context={'orders': orders})
 
 
 def register_user(request):
@@ -25,13 +36,13 @@ def register_user(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-        #     group = Group.objects.get(name='ServiceClient')
-        #     user.groups.add(group)
-        #     # form.save()
-        #     # user.groups.add(group)
-        #     # user.groups.add(1) # add by id
-        # # /group.user_set.add(user)
-        #     user.save()
+            #     group = Group.objects.get(name='ServiceClient')
+            #     user.groups.add(group)
+            #     # form.save()
+            #     # user.groups.add(group)
+            #     # user.groups.add(1) # add by id
+            # # /group.user_set.add(user)
+            #     user.save()
             return HttpResponseRedirect('/')
     else:
         form = UserRegisterForm()
@@ -49,56 +60,66 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from mainApp.models import Area, Service
 
+
 class AreaList(ListView):
     model = Area
+
 
 class ServiceDetailView(DetailView):
     model = Service
 
+
 class AreaDetailView(DetailView):
     model = Area
 
+
 class MasterList(ListView):
     model = Master
+
 
 class MasterDetailView(DetailView):
     model = Master
 
 
-
-def book_detail_view(request,pk):
+def book_detail_view(request, pk):
     try:
-        book_id=Area.objects.get(pk=pk)
+        book_id = Area.objects.get(pk=pk)
     except Area.DoesNotExist:
         raise Http404("Area does not exist")
 
-    #book_id=get_object_or_404(Area, pk=pk)
+    # book_id=get_object_or_404(Area, pk=pk)
 
     return render(
         request,
         'catalog/book_detail.html',
-        context={'book':book_id,}
+        context={'book': book_id, }
     )
+
 
 @login_required
 def make_order(request, pk):
-    OrderLineFormSet = formset_factory(OrderLineForm, extra=1)
+    OrderLineFormSet = formset_factory(OrderLineForm, extra=0, can_delete=True)
     if request.method == 'POST':
         formset = OrderLineFormSet(request.POST)
         if formset.is_valid():
-            print('valid')
             order = Order()
             order.client = request.user
             order.price = 0
             order.save()
+            print()
             for form in formset:
 
                 if form.is_valid():
                     order_line = form.save(commit=False)
-                    order_line.order = order
-                    order_line.feedback = "123"
-                    order_line.price = order_line.service.price
-                    form.save()
+                    print("hi")
+                    if order_line:
+                        print(True)
+                        order_line.order = order
+                        order_line.feedback = "1"
+                        order_line.price = order_line.service.price
+                        form.save(commit=True)
+                    else:
+                        print(False)
 
             all_lines_in_order = OrderLine.objects.filter(order=order)
             total_price = 0
@@ -114,12 +135,13 @@ def make_order(request, pk):
             # line.order = order
             # line.feedback = ""
             # form.save()
-            return render(request, 'mainApp/temp.html', {'formset': formset})
+            ready = "Благодарим за оформление заказа! Заказ зарезервирован! Вы можете отслеживать его статус в личном кабинете!"
+            service = Service.objects.get(pk=pk)
+            formset = OrderLineFormSet(initial=[{'service': service}])
+            return render(request, 'mainApp/temp.html', {'formset': formset, 'ready': ready})
     else:
         service = Service.objects.get(pk=pk)
         formset = OrderLineFormSet(initial=[{'service': service}])
-
-
     return render(request, 'mainApp/temp.html', {'formset': formset})
 
     # OrderLineFormSet = formset_factory(OrderLineForm)
@@ -146,6 +168,7 @@ def make_order(request, pk):
     #     print(formset.errors)
     #     messages.success(request, "Payments saved successfully")
     # return render(request, "mainApp/temp.html", {"formset": formset})
+
 
 #     args['order'] = Order.objects.get(id=pk)
 #     args['comments'] = Comment.objects.filter(order=args['order'])
@@ -188,13 +211,9 @@ def add_comment(request):
             return HttpResponseRedirect('/')
 
 
-
-
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from .models import Area
-
 
 
 class OrderLineCreate(CreateView):
@@ -202,20 +221,22 @@ class OrderLineCreate(CreateView):
     fields = '__all__'
 
 
-
 class AreaCreate(CreateView):
     model = Area
     fields = '__all__'
     # initial={'date_of_death':'12/10/2016',}
+
 
 class AreaUpdate(UpdateView):
     model = Area
     fields = '__all__'
     # ['first_name','last_name','date_of_birth','date_of_death']
 
+
 class AreaDelete(DeleteView):
     model = Area
     success_url = reverse_lazy('areas')
+
 
 def do(self, **kwargs):
     print("1")

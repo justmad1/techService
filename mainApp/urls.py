@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^masters/$', MasterList.as_view(), name="masters"),
     url(r'^masters/(?P<pk>\d+)$', MasterDetailView.as_view(), name="masters-detail"),
 
+    url(r'^feedback/$', views.get_feedback, name="last_feedback"),
 
     url(r'^areas/$', AreaList.as_view(), name="areas"),
     url(r'^areas/(?P<pk>\d+)$', AreaDetailView.as_view(), name="areas-detail"),

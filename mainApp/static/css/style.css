@@ -312,6 +312,11 @@ body {
     margin-right: 40px;
     margin-top: 15px;
 }
+.submenu {
+    float: left;
+    margin-right: 40px;
+    margin-top: 15px;
+}
 
 .menu li {
     float: left;
