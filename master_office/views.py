@@ -81,12 +81,19 @@ def take_order(request, pk):
     # args['master'] = Master.objects.get(user=request.user)
 
     master = Master.objects.get(user_id=request.user.id)
+    args['serveces'] = Service.objects.filter(area__in=master.areas.all)
+    args['orderlines'] = OrderLine.objects.filter(service__in=args['serveces'].all).exclude(master__isnull=False)
+    args['page'] = 'all_orderlines'
     line = OrderLine.objects.get(id=pk)
     area = Area.objects.get(id=line.service.area.id)
-    line.master = master
+    current_orders = OrderLine.objects.filter(master=master).filter(status=0)
+    current_orders_number = len(current_orders)
+    if current_orders_number > 4:
+        args['many_orders'] = "Вы не можете взяться за этот заказ! Сначала выполните предыдущие!!"
+    else:
+        line.master = master
     line.save()
-    return masters_orders(request)
-    # return render(request, 'master_office/orderline_list.html', args)
+    return render(request, 'master_office/orderline_list.html', args)
 
 
 def close_order(request, pk):
