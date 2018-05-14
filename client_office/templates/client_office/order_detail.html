@@ -2,7 +2,9 @@
 
 {% block client_content %}
 
-
+    {% if ready %}
+        <h4>{{ ready }}</h4>
+    {% endif %}
 
     Информация о заказе:
     <p>status: {{ order.status }}</p>
@@ -11,18 +13,23 @@
     <p>Обратная связь: {{ order.feedback }}</p>
     <hr>
     {% for line in order.orderline_set.all %}
-        <p>
-
         <p>Название услуги: {{ line.service.name }}</p>
         <p>Описание проблемы: {{ line.touble_description }}</p>
         <p>brand: {{ line.brand_name }}</p>
-
-        </p>
         <hr>
     {% endfor %}
 
-    <div class="large-offset-1 large-8 columns"></div>
+    {% if fb_form != Null %}
+        <p>Оцените заказ!</p>
+        <form action="{% url 'add_feedback' order.id %} " method="post">
 
+    <h4>Ваша текущая оценка: {{ order.rating }} </h4>
+    <h4>Ваш текущий отзыв: {{ order.feedback }}</h4>
+            {% csrf_token %}
+            {{ fb_form.as_p }}
+            <button id="register-button" type="submit">Оценить</button>
+        </form>
+    {% endif %}
 
 
     <p>Комментарии:</p>
@@ -34,26 +41,14 @@
             <button id="register-button" type="submit">Добавить комментарий</button>
         </form>
     {% endif %}
-
     {% for comment in order.comment_set.all %}
         <p>
 
         <p>Текст комментария: {{ comment.author.username }}</p>
         <p>Автор комментария: {{ comment.content }}</p>
-        <p>Рейтинг: {{ comment.rating }}</p>
 
         </p>
         <hr>
     {% endfor %}
-
-    {% if fb_form != Null %}
-
-    <p>Оцените заказ!</p>
-    <form action="{% url 'add_feedback' order.id %} " method="post">
-        {% csrf_token %}
-        {{ fb_form.as_p }}
-        <button id="register-button" type="submit">Оценить</button>
-    </form>
-    {% endif %}
 
 {% endblock %}

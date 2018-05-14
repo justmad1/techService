@@ -5,8 +5,8 @@ from master_office.models import Order
 
 
 class FeedbackForm(forms.ModelForm):
-    feedback = forms.CharField(label="Оцените качество работы",required=True)
-    rating = forms.IntegerField(label="Рейтинг", required=True)
+    feedback = forms.CharField(label="Отзыв о качестве работы", required=True)
+    rating = forms.IntegerField(label="Оценка", required=True, max_value=5, min_value=0)
 
     class Meta:
         model = Order
