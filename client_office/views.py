@@ -69,7 +69,7 @@ def add_feedback(request, pk):
             order.feedback = form_res.feedback
             order.rating = form_res.rating
             order.save()
-
+            args['ready'] = 'Спасибо за вашу оценку! Вы помогаете нам стать лучше!'
             return render(request, 'client_office/order_detail.html', args)
 #            return redirect('client_orders-detail', pk=pk)
             # return HttpResponseRedirect('/')
