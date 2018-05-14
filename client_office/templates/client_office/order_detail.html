@@ -19,8 +19,17 @@
         <hr>
     {% endfor %}
 
-    <div class="large-offset-1 large-8 columns"></div>
+    {% if fb_form != Null %}
+        <p>Оцените заказ!</p>
+        <form action="{% url 'add_feedback' order.id %} " method="post">
 
+    <h4>Ваша текущая оценка: {{ order.rating }} </h4>
+    <h4>Ваш текущий отзыв: {{ order.feedback }}</h4>
+            {% csrf_token %}
+            {{ fb_form.as_p }}
+            <button id="register-button" type="submit">Оценить</button>
+        </form>
+    {% endif %}
 
 
     <p>Комментарии:</p>
@@ -32,31 +41,14 @@
             <button id="register-button" type="submit">Добавить комментарий</button>
         </form>
     {% endif %}
-
     {% for comment in order.comment_set.all %}
         <p>
 
         <p>Текст комментария: {{ comment.author.username }}</p>
         <p>Автор комментария: {{ comment.content }}</p>
-        <p>Рейтинг: {{ comment.rating }}</p>
 
         </p>
         <hr>
     {% endfor %}
-
-    {% if order.rating %}
-        <h4>Ваша оценка: {{ order.rating }} </h4>
-        <h4>Ваш отзыв: {{ order.feedback }}</h4>
-    {% else %}
-        {% if fb_form != Null %}
-
-            <p>Оцените заказ!</p>
-            <form action="{% url 'add_feedback' order.id %} " method="post">
-                {% csrf_token %}
-                {{ fb_form.as_p }}
-                <button id="register-button" type="submit">Оценить</button>
-            </form>
-        {% endif %}
-    {% endif %}
 
 {% endblock %}

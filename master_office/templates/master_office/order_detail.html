@@ -24,7 +24,7 @@
 
 <div class="large-offset-1 large-8 columns">
 <p>Комментарии:</p>
-    <form action="{% url 'addcomment' order.id %} " method="post">
+    <form action="{% url 'addcomment_master' order.id %} " method="post">
     {% csrf_token %}
     {{ form.as_p }}
 <button id="register-button" type="submit">Добавить комментарий</button>
