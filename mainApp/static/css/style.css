@@ -306,30 +306,52 @@ body {
     position: relative;
     float: right;
 }
-
+.green {
+    border: none;
+    background-color: #19BD9d; 
+    height: 2px;
+}
 .menu {
     float: left;
     margin-right: 40px;
     margin-top: 15px;
+}
+.menu-buttons{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 20px 0px;
 }
 .submenu {
     float: left;
     margin-right: 40px;
     margin-top: 15px;
 }
-
+.page {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.page h1 {
+    font-size: 1.5em;
+}
 .menu li {
     float: left;
     margin-right: 10px;
 }
-
+.page{
+}
 .menu li.active a,
 .menu li a:hover {
     background: #19BD9d;
     color: #ffffff;
     text-shadow: 0 1px 0 #10816A;
 }
-
+.menu-buttons a:hover {
+    background: #19BD9d;
+    color: #ffffff;
+    text-shadow: 0 1px 0 #10816A;
+}
 .menu li a {
     font-size: 0.8725em;
     color: #c0c0c0;
@@ -346,7 +368,23 @@ body {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
-
+.menu-buttons a {
+    font-size: 0.8725em;
+    color: #c0c0c0;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    margin: 0px 50px;
+    font-weight: 600;
+    text-shadow: 0 1px 0 #ffffff;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
 .non-clickable {
     color: #696969;
     font-size: 1em;
