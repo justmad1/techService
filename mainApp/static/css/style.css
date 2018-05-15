@@ -2716,7 +2716,7 @@ span.tab-img {
     padding-bottom: 30px;
     border: 2px solid #808080;
     border-radius: 5px;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .text-container-center hr {
@@ -2962,7 +2962,14 @@ span.tab-img {
     background-color: #19BD9B;
     border-radius: 5px;
 }
-
+.register-button {
+    font-size: 1.05em;
+    width: 25%;
+    height: 30px;
+    margin: auto;
+    background-color: #19BD9B;
+    border-radius: 5px;
+}
 /* client */
 .orders {
     margin: 50px;

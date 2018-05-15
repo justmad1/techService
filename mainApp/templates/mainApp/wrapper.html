@@ -70,7 +70,7 @@
             </div>
             <div class="h_right">
                 <ul class="menu">
-                    <li class="menu-item"><a href="{% url 'last_feedback' %}">Последние отзывы</a></li>
+                    <li class="menu-item"><a href="{% url 'last_feedback' %}">Oтзывы</a></li>
                     <li class="menu-item"><a href="/contact">Контакты</a></li>
                     <li class="menu-item"><a href="{% url 'areas' %}">Категории</a></li>
                     <li class="menu-item"><a href="{% url 'masters' %}">Мастера</a></li>
@@ -78,7 +78,6 @@
                     {% if user.groups.values_list|length == 0 and user.is_authenticated  %}
                         <li class="menu-item"><a href="{% url  'client_page' %}">Кабинет пользователя</a></li>
                     {% endif %}
-
 
                     {% for i in user.groups.values_list %}
                         {% if "ServiceAdmin" in i %}
