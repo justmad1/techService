@@ -38,7 +38,7 @@ def statistics(request):
 
     args['areas'] = all_areas
 
-    args['st'] = "sfsfamjfvnajfnvanjfvnfnvadonbkgfbjnfgbj"
+
     print(args)
     return render(request, 'mainApp/statistics.html', context=args)
 
@@ -156,7 +156,7 @@ def make_order(request, pk):
             # line.order = order
             # line.feedback = ""
             # form.save()
-            ready = "Благодарим за оформление заказа! Заказ зарезервирован! Вы можете отслеживать его статус в личном кабинете!"
+            ready = "Благодарим за оформление заказа! Заказ зарезервирован!"
             service = Service.objects.get(pk=pk)
             formset = OrderLineFormSet(initial=[{'service': service}])
             return render(request, 'mainApp/temp.html', {'formset': formset, 'ready': ready})

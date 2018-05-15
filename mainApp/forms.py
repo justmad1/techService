@@ -28,7 +28,11 @@ class UserRegisterForm(UserCreationForm):
 
 
 class OrderLineForm(forms.ModelForm):
-    service = forms.ModelChoiceField(queryset=Service.objects.all(), required=True)
+    service = forms.ModelChoiceField(queryset=Service.objects.all(), required=True, label="Услуга")
+    brand_name = forms.CharField(label="Брэнд", max_length=20)
+    device_name = forms.CharField(label="Модель", max_length=20)
+    serial_id = forms.CharField(label="Серийный номер", max_length=20)
+    trouble_description = forms.CharField(widget=forms.Textarea, label="Описание проблемы", max_length=100)
 
     class Meta:
         model = OrderLine
