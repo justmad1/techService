@@ -1,15 +1,17 @@
 {% extends "client_office/client_wrapper.html" %}
 
 {% block client_content %}
-
+<div class="order">
     {% if ready %}
-        <h4>{{ ready }}</h4>
+            <div class="order-ready">
+                <h4>{{ ready }}</h4>
+            </div>
     {% endif %}
-
+    
     Информация о заказе:
-    <p>status: {{ order.status }}</p>
-    <p>клиент: {{ order.client.first_name }}</p>
-    <p>цена: {{ order.price }}</p>
+    <p>Статус заказа: {{ order.status }}</p>
+    <p>Клиент: {{ order.client.first_name }}</p>
+    <p>Цена: {{ order.price }}</p>
     <p>Обратная связь: {{ order.feedback }}</p>
     <hr>
     {% for line in order.orderline_set.all %}
@@ -27,7 +29,7 @@
     <h4>Ваш текущий отзыв: {{ order.feedback }}</h4>
             {% csrf_token %}
             {{ fb_form.as_p }}
-            <button id="register-button" type="submit">Оценить</button>
+            <button class="button" type="submit">Оценить</button>
         </form>
     {% endif %}
 
@@ -38,17 +40,14 @@
         <form action="{% url 'addcomment' order.id %} " method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button id="register-button" type="submit">Добавить комментарий</button>
+            <button class="button" type="submit">Добавить комментарий</button>
         </form>
     {% endif %}
     {% for comment in order.comment_set.all %}
-        <p>
-
+        <hr>
         <p>Текст комментария: {{ comment.author.username }}</p>
         <p>Автор комментария: {{ comment.content }}</p>
-
-        </p>
-        <hr>
     {% endfor %}
+</div>
 
 {% endblock %}

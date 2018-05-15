@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+
+from master_office.forms import CommentForm
+from master_office.views import OrderDetailView
 from news.models import Articles
 from mainApp.forms import UserRegisterForm, OrderLineForm
 from django.http import HttpResponseRedirect
@@ -95,23 +98,28 @@ def book_detail_view(request, pk):
 
 @login_required
 def make_order(request, pk):
-    OrderLineFormSet = formset_factory(OrderLineForm, extra=0)
+    OrderLineFormSet = formset_factory(OrderLineForm, extra=0, can_delete=True)
     if request.method == 'POST':
         formset = OrderLineFormSet(request.POST)
         if formset.is_valid():
-            print('valid')
             order = Order()
             order.client = request.user
             order.price = 0
             order.save()
+            print()
             for form in formset:
 
                 if form.is_valid():
                     order_line = form.save(commit=False)
-                    order_line.order = order
-                    order_line.feedback = "123"
-                    order_line.price = order_line.service.price
-                    form.save()
+                    print("hi")
+                    if order_line:
+                        print(True)
+                        order_line.order = order
+                        order_line.feedback = "1"
+                        order_line.price = order_line.service.price
+                        form.save(commit=True)
+                    else:
+                        print(False)
 
             all_lines_in_order = OrderLine.objects.filter(order=order)
             total_price = 0
