@@ -22,6 +22,27 @@ def index(request):
     )
 
 
+def statistics(request):
+    args = {}
+    all_areas = []
+    a = 0
+    areas = Area.objects.all()
+    for area in areas:
+        orders = OrderLine.objects.filter(status=1).filter(service__area=area).count()
+        area_info = []
+        area_info.append(area.name)
+        area_info.append(orders)
+        all_areas.append(area_info)
+        print(area_info)
+        a += 1
+
+    args['areas'] = all_areas
+
+    args['st'] = "sfsfamjfvnajfnvanjfvnfnvadonbkgfbjnfgbj"
+    print(args)
+    return render(request, 'mainApp/statistics.html', context=args)
+
+
 def contact(request):
     return render(request, 'mainApp/basic.html')
 
