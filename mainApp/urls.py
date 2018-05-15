@@ -26,4 +26,5 @@ urlpatterns = [
 
     url(r'^add_comment/(?P<pk>\d+)/$', views.add_comment, name=""),
 
+    url(r'^statistics/$', views.statistics, name="statistics"),
 ]

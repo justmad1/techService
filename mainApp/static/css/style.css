@@ -116,7 +116,9 @@ ul {
     margin: 0;
     padding: 0;
 }
-
+rect {
+    fill: rgba(0,0,0,0);
+}
 blockquote,
 q {
     quotes: none;
