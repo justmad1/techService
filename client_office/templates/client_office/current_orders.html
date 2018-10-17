@@ -5,7 +5,10 @@
     <div class="orders">
         {% for order in orders %}
             <hr class="hr-small">
-            <a class="area-text-primary" href="{% url 'client_office-detail' order.pk %}"><h3>{{ order.pk }}</h3></a>
+            <a class="area-text-primary" href="{% url 'client_office-detail' order.pk %}">
+                <h3>{{ order.name }}</h3>
+            </a>
+            <br>
         {% endfor %}
     </div>
 {% endblock %}
